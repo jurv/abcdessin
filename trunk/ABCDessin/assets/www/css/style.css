@@ -162,6 +162,7 @@ ul #listdivider {
  	border-left: 6px solid #188f69;
 }
 
+
 @media all and (min-width: 500px) and (orientation:landscape), 
 				(min-width: 800px) and (orientation:portrait) 
 				{	
