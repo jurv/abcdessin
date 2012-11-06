@@ -11,7 +11,7 @@ soundHandler = function () {
 	// Chemin vers le dossier de medias sons
 	this.mediaPath = 'media/sounds';
 	// Extension son
-	this.extension = '.wav';
+	this.extension = '.mp3';
 	// Média en cours de lecture
 	this.media = null;
 	
@@ -74,7 +74,7 @@ soundHandler = function () {
 	
 	this.playHTML5Audio = function (src) {
 	  $('body').append('<span id="playSound"></span>');
-	  $('#playSound').html("<embed src='" + src + "' hidden='true' autostart='true' loop='false'>");
+	  $('#playSound').html("<audio autoplay> <source src='" + src + "' type='audio/mpeg' /> </audio>");
 	  
 	  console.log("Lecture du média : " + src + " en cours ...");
 	}
