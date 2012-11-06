@@ -9,7 +9,52 @@
     <script src="jquery.mobile/jquery-1.7.2.min"></script>
 	<script src="jquery.mobile/jquery.mobile-1.1.0.min.js"></script>
 	<script type="text/javascript" charset="utf-8" src="cordova-1.9.0.js"></script>
-	<script type="text/javascript" charset="utf-8" src="index.js"></script>
+	<script type="text/javascript" charset="utf-8" src="js-project/image-handler.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js-project/song-handler.js"></script>
+    <script type="text/javascript" src="js-project/sketch2.js"></script>
+    <script type="text/javascript" src="js-project/dessin.js"></script>
+    <script type="text/javascript" charset="utf-8" src="index.js"></script>
+  
+
+    <script type="text/javascript">  
+        jQuery(document).ready(function(){
+
+            canvas = document.getElementById('simple_sketch');
+            context = canvas.getContext('2d');
+            
+            //h = win.innerHeight - (win.innerHeight * 0.1),
+                
+
+            var win = window,
+                doc = document,
+                w = win.innerWidth - (win.innerWidth * 0.03),
+                h = win.innerHeight - (win.innerHeight * 0.4),
+                container = doc.getElementById('container');
+            
+            //if( win.navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry)/i) ) {
+                canvas.height = h;
+                canvas.width = w;
+                canvas.style.height = h+"px";
+                canvas.style.width = w+"px";
+                container.style.height = h+"px";
+                container.style.width = w+"px";
+            //}
+
+            $('#simple_sketch').sketch({defaultSize: 18});
+
+            jQuery("#generate").click(function(){
+                generate();
+                pixelsDeb = analyse();
+            });
+
+            jQuery("#validate").click(function(){
+                pixelsFin = analyse();
+                validate();
+            });
+
+            generate();
+        })          
+    </script>
   
 	<!-- CDN Respositories: For production, replace lines above with these uncommented minified versions -->
 	<!-- <link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css" />-->
@@ -23,11 +68,21 @@
 			<h1>Dessiner</h1>
 	 		<a href="index.html" rel="external"  data-icon="home" data-iconpos="notext" id="intro" class="ui-btn-right">Accueil</a>
 		</div>
-		<div data-role="content" data-theme="c">			
+		<div data-role="content" data-theme="c">
+	  		<div id="container" name="container">
+                <canvas id="simple_sketch" style="border: 1px solid #666666;">
+                </canvas>
+            </div>
+            <div>
+                <button id="validate" name="validate">Valider</button>
+                <button id="generate" name="generate" data-tool="eraser">Générer</button>
+            </div>
+            <div id="result" name="result">
+            </div>  
 		</div>
 		<div data-role="footer" data-position="fixed" class="footer-docs" data-theme="b">
 			<p>&copy; 2012 ABCDessin</p>
-		</div>	
+		</div>
 	</div>			
   </body>
 </html>
