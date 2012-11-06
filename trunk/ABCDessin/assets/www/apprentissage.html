@@ -10,7 +10,16 @@
     <script src="jquery.mobile/jquery-1.7.2.min"></script>
 	<script src="jquery.mobile/jquery.mobile-1.1.0.min.js"></script>
 	<script type="text/javascript" charset="utf-8" src="cordova-1.9.0.js"></script>
+	<script type="text/javascript" charset="utf-8" src="js-project/image-handler.js"></script>
+	<script type="text/javascript" charset="utf-8" src="js-project/song-handler.js"></script>
 	<script type="text/javascript" charset="utf-8" src="index.js"></script>
+	<script type="text/javascript">
+		pageManager = null;
+		$(document).ready(function() {
+			pageManager = new pageApprentissage();
+			pageManager.toNextLetter();
+		});
+	</script>
   
 	<!-- CDN Respositories: For production, replace lines above with these uncommented minified versions -->
 	<!-- <link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css" />-->
@@ -26,7 +35,7 @@
 		</div>
 		<div data-role="content" data-theme="c">
 			<div id="content">	
-				<div id="diapo_control">CONTROL</div>
+				<div id="diapo_control" onclick="pageManager.toNextLetter();">CONTROL</div>
 				<div id="diapo_display">
 					<div id="maj_letter_display">LETTRE MAJ</div>
 					<div id="min_letter_display">LETTRE min</div>
