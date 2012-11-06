@@ -62,7 +62,7 @@ imageHandler = function() {
 	};
 	
 	// Font cursive
-	this.cursiveFont = "arial";
+	this.cursiveFont = "cursive";
 	// Font normale
 	this.normalFont = "comic";
 	// Taille de la font

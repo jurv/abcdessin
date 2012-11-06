@@ -60,11 +60,115 @@ $('#page-home').live('pageinit', function(event){
     });
 });
 
+/*
+ * Fonction appellée lorsque la page est chargée.
+ */
 $(document).ready(function() {
-	var imageManager = new imageHandler();
+	/*var imageManager = new imageHandler();
 	var soundManager = new soundHandler();
 	imageManager.getRessource('a');
 	imageManager.getRessource('A');
 	imageManager.getHtmlRessource('A');
-	soundManager.playSound('a');
+	soundManager.playSound('a');*/
 });
+
+/*
+ * Fonction de gestion de la page "Apprentissage".
+ */
+pageApprentissage = function () {
+	
+	// Lettre courante
+	this.currentLetter = 'z';
+	// Manager des lettres
+	this.managerLetter = new imageHandler();
+	
+	/*
+	 * Fonction permettant de récupérer la lettre suivante celle passée en paramètres
+	 */
+	this.getNextLetter = function ( ) {
+		
+		// Mise en place du bouclage sur l'alphabet
+		if(this.currentLetter == 'z') {
+			this.currentLetter = 'a';
+			return true;
+		}
+		
+		// On récupère le numéro de caractère
+		var charIndex = this.currentLetter.charCodeAt(0);
+			
+		// Reconstitution de la lettre
+		charIndex ++;
+		this.currentLetter = String.fromCharCode(charIndex);
+	}
+	
+	/*
+	 * Fonction permettant de récupérer la lettre précédent celle passée en paramètres
+	 */
+	this.getPreviousLetter = function ( ) {
+		
+		// Mise en place du bouclage sur l'alphabet
+		if(this.currentLetter == 'a') {
+			this.currentLetter = 'z';
+			return true;
+		}
+		
+		// On récupère le numéro de caractère
+		var charIndex = this.currentLetter.charCodeAt(0);
+			
+		// Reconstitution de la lettre
+		charIndex --;
+		this.currentLetter = String.fromCharCode(charIndex);
+	}
+	
+	/*
+	 * Fonction permettant de retourner la lettre courante en capitale.
+	 * 
+	 * @param : isCursive : Police cursive ?
+	 */
+	this.printCapitalLetter = function (isCursive) {
+		
+		return this.managerLetter.getHtmlRessource(this.currentLetter.toUpperCase(), isCursive);
+	}
+	
+	/*
+	 * Fonction permettant de retourner la lettre courante en non capitale.
+	 * 
+	 * @param : isCursive : Police cursive ?
+	 */
+	this.printLowerLetter = function (isCursive) {
+		
+		return this.managerLetter.getHtmlRessource(this.currentLetter.toLowerCase(), isCursive);
+	}
+	
+	/*
+	 * Fonction permettant d'afficher la lettre suivante dans les divs
+	 */
+	this.toNextLetter = function () {
+		
+		// On passe à la lettre suivante
+		this.getNextLetter();
+		
+		// Lettre majuscule non cursive
+		$('#maj_letter_display').html(this.printCapitalLetter(false));
+		// Lettre minuscule non cursive
+		$('#min_letter_display').html(this.printLowerLetter(false));
+		// Lettre minuscule cursive
+		$('#cur_letter_display').html(this.printLowerLetter(true));
+	}
+	
+	/*
+	 * Fonction permettant d'afficher la lettre précédente dans les divs
+	 */
+	this.toPreviousLetter = function () {
+	
+		// On passe à la lettre suivante
+		this.getPreviousLetter();
+		
+		// Lettre majuscule non cursive
+		$('#maj_letter_display').html(this.printCapitalLetter(false));
+		// Lettre minuscule non cursive
+		$('#min_letter_display').html(this.printLowerLetter(false));
+		// Lettre minuscule cursive
+		$('#cur_letter_display').html(this.printLowerLetter(true));
+	}
+}
