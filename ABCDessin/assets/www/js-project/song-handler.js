@@ -9,9 +9,11 @@
 soundHandler = function () {
 	
 	// Chemin vers le dossier de medias sons
-	this.mediaPath = '/medias/sound';
+	this.mediaPath = 'media/sounds';
 	// Extension son
 	this.extension = '.wav';
+	// Média en cours de lecture
+	this.media = null;
 	
 	/*
 	 * Fonction permettant de récupérer le flux audio en fonction de la lettre décrite.
@@ -57,6 +59,27 @@ soundHandler = function () {
 	}
 	
 	/*
+	 * Fonction permettant de lancer la lecture d'une source audio en utilisant l'API cordova.
+	 * 
+	 * @param : src : chemin vers le fichier audio.
+	 */
+	this.playCordovaAudio = function (src) {
+		
+		// Créer l'objet Media à partir de src
+        this.media = new Media(src, function() {}, function() { console.log('sound-handler: playCordovaAudio : Erreur ouverture du média : ')});
+
+        // Lire le clip audio
+        this.media.play();
+	}
+	
+	this.playHTML5Audio = function (src) {
+	  $('body').append('<span id="playSound"></span>');
+	  $('#playSound').html("<embed src='" + src + "' hidden='true' autostart='true' loop='false'>");
+	  
+	  console.log("Lecture du média : " + src + " en cours ...");
+	}
+	
+	/*
 	 * Fonction permettant de lire la ressource audio associée à la lettre passée en paramètre.
 	 * 
 	 * @param letter : Lettre à lire
@@ -76,11 +99,13 @@ soundHandler = function () {
 				console.log('sound-handler : playSound : Le device est un mobile');
 				
 				// On utilise l'API de cordova pour la lecture
+				this.playCordovaAudio(soundPath);
 			}
 			else {
 				console.log('sound-handler : playSound : Le device est n\'est pas un mobile');
 				
 				// On utilise HTML 5 pour la lecture du fichier Audio
+				this.playHTML5Audio(soundPath);
 			}
 				
 		}

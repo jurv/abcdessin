@@ -59,3 +59,12 @@ $('#page-home').live('pageinit', function(event){
         $.mobile.silentScroll(0);
     });
 });
+
+$(document).ready(function() {
+	var imageManager = new imageHandler();
+	var soundManager = new soundHandler();
+	imageManager.getRessource('a');
+	imageManager.getRessource('A');
+	imageManager.getHtmlRessource('A');
+	soundManager.playSound('a');
+});
