@@ -28,7 +28,6 @@
 	<!-- <script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>-->
 	<!-- <script src="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js"></script>-->
 	</head>
-  
   <body>
 	<div id="page" data-role="page" id="page-apprentissage" class="type-interior" data-theme="b">
 		<div data-role="header" data-theme="b">
@@ -47,13 +46,12 @@
 				</div>
 				<div id="diapo-display">
 					<div id="maj_letter_display" class="bigDisplay" onclick="pageManager.readLetter();"></div>
-					<div id="min_letter_display" class="smallDisplay" onclick="pageManager.readLetter();"></div>
-					<div id="cur_letter_display" class="smallDisplay" onclick="pageManager.readLetter();"></div>
+					<div class="lineBloc">
+						<div id="min_letter_display" class="mediumDisplay" onclick="pageManager.readLetter();"></div>
+						<div id="cur_letter_display" class="mediumDisplay" onclick="pageManager.readLetter();"></div>
+					</div>
 				</div>
 			</div>
-		</div>
-		<div data-role="footer" data-position="fixed" class="footer-docs" data-theme="b">
-			<p>&copy; 2012 ABCDessin</p>
 		</div>	
 	</div>			
   </body>
