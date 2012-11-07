@@ -92,9 +92,9 @@ imageHandler = function() {
 			
 			// Type de police
 			if(isCursive)
-				htmlRender += "font-family:\"" + this.cursiveFont + "\" ; ";
+				htmlRender += "font-family:'" + this.cursiveFont + "' ; ";
 			else
-				htmlRender += "font-family:\"" + this.normalFont + "\" ; ";
+				htmlRender += "font-family:'" + this.normalFont + "' ; ";
 			
 			// Taille
 			htmlRender += "font-size:" + this.fontSize + " ; ";

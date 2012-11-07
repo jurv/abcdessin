@@ -5,6 +5,7 @@
     <title>ABCDessin</title>
 
  	<link rel="stylesheet" href="jquery.mobile/jquery.mobile-1.1.0.min.css" />
+ 	<link rel="stylesheet" href="css/icons-pack/jqm-icons.css" />
  	<link rel="stylesheet" href="css/style.css" />
 
     <script src="jquery.mobile/jquery-1.7.2.min"></script>
@@ -35,7 +36,12 @@
 		</div>
 		<div data-role="content" data-theme="c">
 			<div id="content">	
-				<div id="diapo_control" onclick="pageManager.toNextLetter();">CONTROL</div>
+				<div id="diapo_control" data-role="controlgroup" data-type="horizontal">
+					<button data-icon="step-backward" data-iconpos="notext" onclick="pageManager.toPreviousLetter();"> Back </button>
+					<button data-icon="stop" data-iconpos="notext" onclick="pageManager.stop();"> Stop </button>
+					<button data-icon="play" data-iconpos="notext" onclick="pageManager.play();"> Play </button>
+					<button data-icon="step-forward" data-iconpos="notext" onclick="pageManager.toNextLetter();"> Next </button>
+				</div>
 				<div id="diapo_display">
 					<div id="maj_letter_display">LETTRE MAJ</div>
 					<div id="min_letter_display">LETTRE min</div>

@@ -76,48 +76,55 @@ $(document).ready(function() {
  * Fonction de gestion de la page "Apprentissage".
  */
 pageApprentissage = function () {
-	
+	// Numéro d'autolecture
+	var autoPlayInt = 0;
+	this.autoPlayInt = autoPlayInt;
 	// Lettre courante
-	this.currentLetter = 'z';
+	var currentLetter = 'z';
+	this.currentLetter = currentLetter;
 	// Manager des lettres
-	this.managerLetter = new imageHandler();
+	var managerLetter = new imageHandler();
+	this.managerLetter = managerLetter;
+	// Manager des sons
+	var managerSong = new soundHandler();
+	this.managerSong = managerSong;
 	
 	/*
 	 * Fonction permettant de récupérer la lettre suivante celle passée en paramètres
 	 */
-	this.getNextLetter = function ( ) {
+	var getNextLetter = function ( ) {
 		
 		// Mise en place du bouclage sur l'alphabet
-		if(this.currentLetter == 'z') {
-			this.currentLetter = 'a';
+		if(currentLetter == 'z') {
+			currentLetter = 'a';
 			return true;
 		}
 		
 		// On récupère le numéro de caractère
-		var charIndex = this.currentLetter.charCodeAt(0);
+		var charIndex = currentLetter.charCodeAt(0);
 			
 		// Reconstitution de la lettre
 		charIndex ++;
-		this.currentLetter = String.fromCharCode(charIndex);
+		currentLetter = String.fromCharCode(charIndex);
 	}
 	
 	/*
 	 * Fonction permettant de récupérer la lettre précédent celle passée en paramètres
 	 */
-	this.getPreviousLetter = function ( ) {
+	var getPreviousLetter = function ( ) {
 		
 		// Mise en place du bouclage sur l'alphabet
-		if(this.currentLetter == 'a') {
-			this.currentLetter = 'z';
+		if(currentLetter == 'a') {
+			currentLetter = 'z';
 			return true;
 		}
 		
 		// On récupère le numéro de caractère
-		var charIndex = this.currentLetter.charCodeAt(0);
+		var charIndex = currentLetter.charCodeAt(0);
 			
 		// Reconstitution de la lettre
 		charIndex --;
-		this.currentLetter = String.fromCharCode(charIndex);
+		currentLetter = String.fromCharCode(charIndex);
 	}
 	
 	/*
@@ -125,50 +132,86 @@ pageApprentissage = function () {
 	 * 
 	 * @param : isCursive : Police cursive ?
 	 */
-	this.printCapitalLetter = function (isCursive) {
+	var printCapitalLetter = function (isCursive) {
 		
-		return this.managerLetter.getHtmlRessource(this.currentLetter.toUpperCase(), isCursive);
+		return managerLetter.getHtmlRessource(currentLetter.toUpperCase(), isCursive);
 	}
+	this.printCapitalLetter = printCapitalLetter;
 	
 	/*
 	 * Fonction permettant de retourner la lettre courante en non capitale.
 	 * 
 	 * @param : isCursive : Police cursive ?
 	 */
-	this.printLowerLetter = function (isCursive) {
+	var printLowerLetter = function (isCursive) {
 		
-		return this.managerLetter.getHtmlRessource(this.currentLetter.toLowerCase(), isCursive);
+		return managerLetter.getHtmlRessource(currentLetter.toLowerCase(), isCursive);
 	}
+	this.printLowerLetter = printLowerLetter;
 	
 	/*
 	 * Fonction permettant d'afficher la lettre suivante dans les divs
 	 */
-	this.toNextLetter = function () {
+	var toNextLetter = function () {
 		
 		// On passe à la lettre suivante
-		this.getNextLetter();
+		getNextLetter();
 		
 		// Lettre majuscule non cursive
-		$('#maj_letter_display').html(this.printCapitalLetter(false));
+		$('#maj_letter_display').html(printCapitalLetter(false));
 		// Lettre minuscule non cursive
-		$('#min_letter_display').html(this.printLowerLetter(false));
+		$('#min_letter_display').html(printLowerLetter(false));
 		// Lettre minuscule cursive
-		$('#cur_letter_display').html(this.printLowerLetter(true));
+		$('#cur_letter_display').html(printLowerLetter(true));
+		
+		// On lit la lettre
+		readLetter();
 	}
+	this.toNextLetter = toNextLetter;
 	
 	/*
 	 * Fonction permettant d'afficher la lettre précédente dans les divs
 	 */
-	this.toPreviousLetter = function () {
+	var toPreviousLetter = function () {
 	
 		// On passe à la lettre suivante
-		this.getPreviousLetter();
+		getPreviousLetter();
 		
 		// Lettre majuscule non cursive
-		$('#maj_letter_display').html(this.printCapitalLetter(false));
+		$('#maj_letter_display').html(printCapitalLetter(false));
 		// Lettre minuscule non cursive
-		$('#min_letter_display').html(this.printLowerLetter(false));
+		$('#min_letter_display').html(printLowerLetter(false));
 		// Lettre minuscule cursive
-		$('#cur_letter_display').html(this.printLowerLetter(true));
+		$('#cur_letter_display').html(printLowerLetter(true));
+		
+		// On lit la lettre
+		readLetter();
 	}
+	this.toPreviousLetter = toPreviousLetter;
+	/*
+	 * Fonction permettant de jouer le son de lecture de la lettre courante.
+	 */
+	var readLetter = function () {
+		// On lance la lecture de la lettre
+		managerSong.playSound(currentLetter);
+	}
+	
+	/*
+	 * Fonction permettant de passer automatiquement les lettres toutes les 5 secondes.
+	 */
+	var play = function () {
+		if(this.autoPlayInt == 0) {
+			this.autoPlayInt = setInterval(toNextLetter, 3000);
+		}
+	}
+	this.play = play;
+	
+	/*
+	 * Fonction permettant de stoper le défilement automatique.
+	 */
+	var stop = function () {
+		clearInterval(this.autoPlayInt);
+		this.autoPlayInt = 0;
+	}
+	this.stop = stop;
 }
