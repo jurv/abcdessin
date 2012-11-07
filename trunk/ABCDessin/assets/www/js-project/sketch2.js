@@ -98,7 +98,8 @@ var __slice = Array.prototype.slice;
       return this.redraw();
     };
     Sketch.prototype.onEvent = function(e) {
-      if (e.originalEvent && e.originalEvent.targetTouches) {
+      console.log(e.type);
+      if (e.originalEvent && e.originalEvent.targetTouches && e.originalEvent.targetTouches.length > 0) {
         e.pageX = e.originalEvent.targetTouches[0].pageX;
         e.pageY = e.originalEvent.targetTouches[0].pageY;
       }
@@ -128,11 +129,37 @@ var __slice = Array.prototype.slice;
   };
   $.sketch.tools.marker = {
     onEvent: function(e) {
+      var canvas = this.canvas, undef;
+      
       switch (e.type) {
         case 'mousedown':
+            this.canvas.ontouchstart = undef;
+            this.canvas.ontouchend = undef;
+            this.canvas.ontouchmove = undef;
+            this.canvas.ontouchcancel = undef;
+            
+            this.canvas.unbind('touchstart');
+            this.canvas.unbind('touchmove');
+            this.canvas.unbind('touchend');
+            this.canvas.unbind('touchcancel');
+            
+            
+            this.startPainting();
+            break;
         case 'touchstart':
-          this.startPainting();
-          break;
+            this.canvas.onmousedown = undef;
+            this.canvas.onmouseup = undef;
+            this.canvas.onmousemove = undef;
+            this.canvas.onmouseleave = undef;
+          
+            this.canvas.unbind('mousedown');
+            this.canvas.unbind('mouseup');
+            this.canvas.unbind('mousemove');
+            this.canvas.unbind('mouseleave');
+            this.canvas.unbind('mouseout');
+            
+            this.startPainting();
+            break;
         case 'mouseup':
         case 'mouseout':
         case 'mouseleave':
