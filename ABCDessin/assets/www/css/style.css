@@ -55,22 +55,28 @@ h3 {
 
 #diapo
 {
-	margin-left: 5%;
-	margin-right: 5%;
+	margin-left: 3%;
+	margin-right: 3%;
 }
 
 
-.smallDisplay
+
+.mediumDisplay
 {
 	float:left;
 	font-size:8em;
 	height:160px;
-	width:50%;
+	width:49%;
 	overflow: hidden;
-	background-color:blue;
+	background:white;
+	border:1px solid #848484;
+	margin-left: 11px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+
 }
 
-.smallDisplay > span, .bigDisplay > span{
+.mediumDisplay > span, .bigDisplay > span{
 	display:block;
 	width:100%;
 	text-align:center;
@@ -79,10 +85,13 @@ h3 {
 .bigDisplay
 {
 	font-size:10em;
-	background-color:yellow;
+	margin-bottom:10px;
+	background:white;
+	border:1px solid #848484;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
 }
 
-#min_letter_display
-{
-
+.lineBloc > .mediumDisplay:first-child {
+	margin-left: 0px;
 }
