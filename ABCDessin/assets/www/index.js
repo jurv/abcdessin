@@ -73,21 +73,35 @@ $(document).ready(function() {
 });
 
 /*
- * Fonction de gestion de la page "Apprentissage".
+ * Classe permettant la gestion de la page "Apprentissage".
  */
 pageApprentissage = function () {
+	
 	// Numéro d'autolecture
 	var autoPlayInt = 0;
 	this.autoPlayInt = autoPlayInt;
+	
 	// Lettre courante
 	var currentLetter = 'z';
 	this.currentLetter = currentLetter;
+	
 	// Manager des lettres
 	var managerLetter = new imageHandler();
 	this.managerLetter = managerLetter;
+	
 	// Manager des sons
 	var managerSong = new soundHandler();
 	this.managerSong = managerSong;
+	
+	/*
+	 * Fonction permettant d'initialiser la page.
+	 */
+	var initialize = function () {
+		
+		// On initialise les lettres
+		pageManager.toNextLetter();
+	}
+	this.initialize = initialize;
 	
 	/*
 	 * Fonction permettant de récupérer la lettre suivante celle passée en paramètres
@@ -195,6 +209,7 @@ pageApprentissage = function () {
 		// On lance la lecture de la lettre
 		managerSong.playSound(currentLetter);
 	}
+	this.readLetter = readLetter;
 	
 	/*
 	 * Fonction permettant de passer automatiquement les lettres toutes les 5 secondes.
@@ -214,4 +229,20 @@ pageApprentissage = function () {
 		this.autoPlayInt = 0;
 	}
 	this.stop = stop;
+}
+
+/*
+ * Classe permettant la gestion de la page "Jeux d'écoute".
+ */
+pageJeuxEcoute = function () {
+	
+	/*
+	 * Fonction permettant d'initialiser la page.
+	 */
+	var initialize = function () {
+		
+		// On initialise les lettres
+		pageManager.toNextLetter();
+	}
+	this.initialize = initialize;
 }

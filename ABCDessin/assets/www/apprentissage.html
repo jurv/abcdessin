@@ -17,8 +17,9 @@
 	<script type="text/javascript">
 		pageManager = null;
 		$(document).ready(function() {
+			// Initialiseur du manager de la page
 			pageManager = new pageApprentissage();
-			pageManager.toNextLetter();
+			pageManager.initialize();
 		});
 	</script>
   
@@ -45,9 +46,9 @@
 					</div>
 				</div>
 				<div id="diapo-display">
-					<div id="maj_letter_display" class="bigDisplay"></div>
-					<div id="min_letter_display" class="smallDisplay"></div>
-					<div id="cur_letter_display" class="smallDisplay"></div>
+					<div id="maj_letter_display" class="bigDisplay" onclick="pageManager.readLetter();"></div>
+					<div id="min_letter_display" class="smallDisplay" onclick="pageManager.readLetter();"></div>
+					<div id="cur_letter_display" class="smallDisplay" onclick="pageManager.readLetter();"></div>
 				</div>
 			</div>
 		</div>
