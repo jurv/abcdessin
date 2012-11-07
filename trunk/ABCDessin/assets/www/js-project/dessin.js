@@ -40,5 +40,6 @@ function generate(){
     jQuery('#simple_sketch').sketch('actions',[]);
     context.fillStyle = "#FF0000";
     context.font = "normal 15em Arial";
+    
     context.fillText("Q", canvas.width/3, canvas.height/1.5);
 }
