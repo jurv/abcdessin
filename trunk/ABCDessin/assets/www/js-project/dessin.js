@@ -3,6 +3,11 @@ var pixelsFin = {noir:0, blanc:0, rouge:0};
 var canvas;
 var context;
 
+
+function getRandomChar(){
+    return Math.random().toString(36).substr(3,1);
+}
+
 function analyse(){
 
     var imgd = context.getImageData(0, 0,canvas.width, canvas.height);
@@ -28,7 +33,10 @@ function analyse(){
 }
 
 function validate(){
-    if(pixelsFin.rouge <= pixelsDeb.rouge * 0.2 && pixelsFin.blanc >= pixelsDeb.blanc * 0.98) {
+    //alert("Nb de pixels rouge : " + pixelsFin.rouge + " | Acceptés : " + pixelsDeb.rouge * 0.3);
+    //alert("Nb de pixels blanc : " + pixelsFin.blanc + " | Acceptés : " + pixelsDeb.blanc * 0.9);
+
+    if(pixelsFin.rouge <= pixelsDeb.rouge * 0.3 && pixelsFin.blanc >= pixelsDeb.blanc * 0.90) {
         alert("OK");
     } else {
         alert("KO");
@@ -39,7 +47,9 @@ function generate(){
     canvas.getContext('2d').clearRect(0,0,canvas.width, canvas.height);
     jQuery('#simple_sketch').sketch('actions',[]);
     context.fillStyle = "#FF0000";
-    context.font = "normal 15em Arial";
+    context.font = "normal 20em Arial";
     
-    context.fillText("Q", canvas.width/3, canvas.height/1.5);
+    char = getRandomChar();
+    
+    context.fillText(char, canvas.width/3, canvas.height/1.5);
 }

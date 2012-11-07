@@ -66,6 +66,14 @@ soundHandler = function () {
         return jQuery.browser.mobile;
 	}
 	
+	function getPhoneGapPath() {
+
+	    var path = window.location.pathname;
+	    path = path.substr( path, path.length - 18 );
+	    return path;
+
+	};
+	
 	/*
 	 * Fonction permettant de lancer la lecture d'une source audio en utilisant l'API cordova.
 	 * 
@@ -79,7 +87,8 @@ soundHandler = function () {
 //	        this.media.release();
 //	    }
 		// Créer l'objet Media à partir de src
-        this.media = new Media("android_asset/www/" + src, function() {}, function() { console.log('sound-handler: playCordovaAudio : Erreur ouverture du média : ')});        
+	    //alert(getPhoneGapPath() + src);
+        this.media = new Media(getPhoneGapPath() + src, function() {}, function() { console.log('sound-handler: playCordovaAudio : Erreur ouverture du média : ')});
         
         // Lire le clip audio
         this.media.play();
