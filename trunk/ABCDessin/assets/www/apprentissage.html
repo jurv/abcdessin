@@ -29,23 +29,25 @@
 	</head>
   
   <body>
-	<div data-role="page" id="page-apprentissage" class="type-interior" data-theme="b">
+	<div id="page" data-role="page" id="page-apprentissage" class="type-interior" data-theme="b">
 		<div data-role="header" data-theme="b">
 			<h1>Apprentissage</h1>
 	 		<a href="index.html" rel="external"  data-icon="home" data-iconpos="notext" id="intro" class="ui-btn-right">Accueil</a>
 		</div>
-		<div data-role="content" data-theme="c">
-			<div id="content">	
-				<div id="diapo_control" data-role="controlgroup" data-type="horizontal">
+		<div id="content" data-role="content" data-theme="c">
+			<div id="diapo">	
+				<div id="diapo-control">
+					<div id="diapo_control" data-role="controlgroup" data-type="horizontal">
 					<button data-icon="step-backward" data-iconpos="notext" onclick="pageManager.toPreviousLetter();"> Back </button>
 					<button data-icon="stop" data-iconpos="notext" onclick="pageManager.stop();"> Stop </button>
 					<button data-icon="play" data-iconpos="notext" onclick="pageManager.play();"> Play </button>
 					<button data-icon="step-forward" data-iconpos="notext" onclick="pageManager.toNextLetter();"> Next </button>
+					</div>
 				</div>
-				<div id="diapo_display">
-					<div id="maj_letter_display">LETTRE MAJ</div>
-					<div id="min_letter_display">LETTRE min</div>
-					<div id="cur_letter_display">LETTRE cursive</div>
+				<div id="diapo-display">
+					<div id="maj_letter_display" class="bigDisplay"></div>
+					<div id="min_letter_display" class="smallDisplay"></div>
+					<div id="cur_letter_display" class="smallDisplay"></div>
 				</div>
 			</div>
 		</div>

@@ -22,12 +22,16 @@
     font-style: normal;
 
 }
+
+html {
+	height: 100%;
+}
+
 body { 
-	background-color: #d1d1d1;
+	background-color: #F9F9F9;
 }
 
 h2 {
-	font-family:'cursive';
 	border-bottom: 1px solid #b3b3b3;
 	font-size: 1.4em; /* 1.6em; */
 	font-weight: bold;
@@ -35,29 +39,49 @@ h2 {
 	padding-bottom: 0.1em;
 	color: #114a80;
 }
+
 h3 { 
 	font-size: 1em;
 	font-weight: bold;
 	margin: 0.8em 0px 0.5em 0px;
 	text-shadow: #FFFFFF 0px 1px 1px;
 }
-#content
-{
-	 margin-left: 5%;
-	 margin-right: 5%;
+
+#page{
 }
-#diapo_control
-{
+
+#content{
 }
-#diapo_display
+
+#diapo
 {
+	margin-left: 5%;
+	margin-right: 5%;
 }
-#maj_letter_display
+
+
+.smallDisplay
 {
-	width:98%;
-	height:60%;
+	float:left;
+	font-size:8em;
+	height:160px;
+	width:50%;
+	overflow: hidden;
+	background-color:blue;
+}
+
+.smallDisplay > span, .bigDisplay > span{
+	display:block;
+	width:100%;
+	text-align:center;
+}
+
+.bigDisplay
+{
+	font-size:10em;
 	background-color:yellow;
 }
+
 #min_letter_display
 {
 
