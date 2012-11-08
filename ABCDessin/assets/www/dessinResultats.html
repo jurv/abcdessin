@@ -18,6 +18,7 @@
     <script type="text/javascript" charset="utf-8" src="apis/storage.js"></script>
     
     <script type="text/javascript" charset="utf-8" src="js-project/charts.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js-project/bdd-handler.js"></script>
 	<script type="text/javascript" charset="utf-8" src="js-project/image-handler.js"></script>
 	<script type="text/javascript" charset="utf-8" src="js-project/song-handler.js"></script>
 	
@@ -41,11 +42,24 @@
 	        if(!!document.createElement('canvas').getContext) {
 	            var mychart = new AwesomeChart('chart');
 	            mychart.title = "Progression dessin";
-	            //mychart.data = [1532, 3251, 3460, 1180, 6543];
-	            //mychart.labels = ["Desktops", "Laptops", "Netbooks", "Tablets", "Smartphones"];
 	            
 	            // On récupère les résultats pour l'application de dessin
-	            var data = getScores('dessin');
+	            var resManager = new scoreManager();
+	            //resManager.testScore();
+	            var data = resManager.getScores('dessin');
+	            var values = new Array();
+	            var lib = new Array();
+	            
+	            // On récupère les valeurs qui nous interesse
+	            for(var i=0; i<data.length; i++ ) {
+	            	values.push(data[i].goodScore);
+	            	values.push(data[i].badScore);
+	            	lib.push(data[i].date + " + ");
+	            	lib.push(data[i].date + " - ");
+	            }
+	            
+	          mychart.data = values;
+	          mychart.labels = lib;
 	            
 	            mychart.draw();
 	        }

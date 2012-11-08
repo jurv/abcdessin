@@ -378,6 +378,10 @@ pageMenuJeux = function () {
  * Classe de gestion du score
  */
 var scoreManager = function(){
+	
+	var bddManager = new bddHandler();
+	this.bddManager = bddManager;
+	
 	/*
 	 * Fonction permettant de r�cup�rer un score
 	 * @param gameName nom du jeu dont on veut recup les scores
@@ -392,14 +396,15 @@ var scoreManager = function(){
 		// Tableau de tableaux (scores bon, mauvais et leur date) � retourner
 		var scoreArray = new Array();;
 		//if (gameName != "dessiner" || gameName != "ordre" || gameName != "cu2maj" || gameName != "maj2min")
-		while (bddHandler.getValue(gameName + "-"+ i)){
-			storedScores = bddHandler.getValue(gameName + "-"+ i);
+		while (bddManager.getValue(gameName + "-"+ i)){
+			storedScores = bddManager.getValue(gameName + "-"+ i);
 			scoresLine=JSON.parse(storedScores);
 			scoreArray[i] = scoresLine;
 			i++;
 		}
 		return scoreArray;
 	}; 
+	this.getScores = getScores;
 	
 	/*
 	 * Fonction permettant d'ajouter un score au jeu "dessiner"
@@ -411,12 +416,13 @@ var scoreManager = function(){
 	var addScore = function (gameName, goodScore,badScore,date) {
 		//Recup�rer l'index de la derniere valeur presente en bdd pour un jeu donn�
 		var i = 0;
-		while (bddHandler.getValue(gameName +"-"+ i)){
+		while (bddManager.getValue(gameName +"-"+ i)){
 			i++;
 		}
-		var row = {"goodScore" : goodScore, "badScore" : badScore, "date" : date };
-		bddHandler.setValue(JSON.stringify(row),gameName +"-"+ i);
+		var row = {"goodScore" : goodScore, "badScore" : badScore, "date" : date.toLocaleFormat("%x").toString() };
+		bddManager.setValue(JSON.stringify(row),gameName +"-"+ i);
 	};
+	this.addScore = addScore;
 
 	/*
 	 * Test
@@ -424,9 +430,10 @@ var scoreManager = function(){
 	testScore = function () {
 		var bonneReponse="12";
 		var mauvaisesReponse="6";
-		var date = new Date(dateString);
-		addScore(dessiner,bonneReponse,mauvaisesReponse,date);
-		var scoreArray = getScore(dessiner);
+		var date = new Date("01/01/2012");
+		addScore("dessin",bonneReponse,mauvaisesReponse, date);
+		var scoreArray = getScores(dessiner);
 		alert(scoreArray[0].goodScore);
 	};
+	this.testScore = testScore;
 };
