@@ -229,7 +229,7 @@ pageApprentissage = function () {
 		this.autoPlayInt = 0;
 	}
 	this.stop = stop;
-}
+};
 
 /*
  * Classe permettant la gestion de la page de menu principal.
@@ -379,7 +379,7 @@ pageMenuJeux = function () {
  */
 var scoreManager = function(){
 	/*
-	 * Fonction permettant de récupérer un score
+	 * Fonction permettant de rï¿½cupï¿½rer un score
 	 * @param gameName nom du jeu dont on veut recup les scores
 	 * @return scoreArray Tableau de tableaux (scores bon, mauvais et leur date)
 	 */
@@ -387,9 +387,9 @@ var scoreManager = function(){
 		var i=0;
 		//Chaque score d'une session d'un jeu
 		var scoresLine;
-		//Score d'une session serialisé
+		//Score d'une session serialisï¿½
 		var storedScores;
-		// Tableau de tableaux (scores bon, mauvais et leur date) à retourner
+		// Tableau de tableaux (scores bon, mauvais et leur date) ï¿½ retourner
 		var scoreArray = new Array();;
 		//if (gameName != "dessiner" || gameName != "ordre" || gameName != "cu2maj" || gameName != "maj2min")
 		while (bddHandler.getValue(gameName + "-"+ i)){
@@ -404,12 +404,12 @@ var scoreManager = function(){
 	/*
 	 * Fonction permettant d'ajouter un score au jeu "dessiner"
 	 * @param gameName nom du jeu dont on veut ajouter le score
-	 * @param goodScore nombre de bonne réponse
-	 * @param badScore nombre de mauvaise réponse
+	 * @param goodScore nombre de bonne rï¿½ponse
+	 * @param badScore nombre de mauvaise rï¿½ponse
 	 * @param date date de la session
 	 */
 	var addScore = function (gameName, goodScore,badScore,date) {
-		//Recupérer l'index de la derniere valeur presente en bdd pour un jeu donné
+		//Recupï¿½rer l'index de la derniere valeur presente en bdd pour un jeu donnï¿½
 		var i = 0;
 		while (bddHandler.getValue(gameName +"-"+ i)){
 			i++;
