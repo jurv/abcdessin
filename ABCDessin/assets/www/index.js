@@ -97,7 +97,6 @@ pageApprentissage = function () {
      * Fonction permettant d'initialiser la page.
      */
     var initialize = function () {
-        
         // On initialise les lettres
         pageManager.toNextLetter();
     }
@@ -180,6 +179,10 @@ pageApprentissage = function () {
         
         // On lit la lettre
         readLetter();
+        /*
+        var h = $("#cur_letter_display").height();
+        $("#min_letter_display").height(h+"px");
+        */
     }
     this.toNextLetter = toNextLetter;
     
@@ -303,6 +306,7 @@ pageJeuxEcoute = function () {
             $("#validletter").html(printCapitalLetter(this.validLetter,true));
             $("#validletter").css("background","#99E26E")
             managerSong.playWin();
+            setInterval(toNextLetter, 3000);
         }else{
             managerSong.playFail();
         }
@@ -315,23 +319,6 @@ pageJeuxEcoute = function () {
     } 
     this.readLetter = readLetter;
     
-    /*
-     * Fonction permettant de passer automatiquement les lettres toutes les 5 secondes.
-     */
-    var play = function () {
-        if(this.autoPlayInt == 0) {
-            this.autoPlayInt = setInterval(toNextLetter, 3000);
-        }
-    }
-    this.play = play;
-    /*
-     * Fonction permettant de stoper le défilement automatique.
-     */
-    var stop = function () {
-        clearInterval(this.autoPlayInt);
-        this.autoPlayInt = 0;
-    }
-    this.stop = stop;
  }
 
 /*
