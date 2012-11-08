@@ -243,7 +243,7 @@ pageMainMenu = function () {
     // Séléction de la lettre dans la plage minuscule de la table ascii
     var currentLetter = 97 + Math.floor(Math.random() * 122);
     this.currentLetter = String.fromCharCode(currentLetter);
-    alert(this.currentLetter +currentLetter);
+
     // Manager des lettres
     var managerLetter = new imageHandler();
     this.managerLetter = managerLetter;
