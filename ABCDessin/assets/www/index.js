@@ -232,9 +232,9 @@ pageApprentissage = function () {
 }
 
 /*
- * Classe permettant la gestion de la page "Jeux d'écoute".
+ * Classe permettant la gestion de la page de menu principal.
  */
-pageJeuxEcoute = function () {
+pageMainMenu = function () {
     // Numéro d'autolecture
     var autoPlayInt = 0;
     this.autoPlayInt = autoPlayInt;
@@ -257,8 +257,119 @@ pageJeuxEcoute = function () {
 	 */
 	var initialize = function () {
 		
-		// On initialise les lettres
-		pageManager.toNextLetter();
-	}
+		// On initialise le menu
+		initializeMenu();
+	};
 	this.initialize = initialize;
+	
+	$(window).resize(function(){
+		initialize();
+	});
+	
+	/*
+	 * Fonction permettant d'initialiser les menus de la page
+	 */
+	var initializeMenu = function () {
+		
+		// On resize les lignes
+		var h = $(window).height();
+		var l = $(window).width();
+
+		// On enlève les 10 px de padding
+		h -= 50;
+		
+		// On divise par trois
+		hu = h / 3;
+		hu = Math.round(hu);
+		
+		// On répercute sur les lignes
+		$('.ligne').css('height', hu + 'px');
+		$('.tile').css('height', hu + 'px');
+		nbDiv = 0;
+		$('.ligne').each(function() { 
+			nbDiv = 0;
+			$(this).css('width', l);
+			$(this).find('.tile').each(function() {
+				nbDiv++;
+			});
+			$(this).find('.tile').each(function() {
+				$(this).css('width', Math.round((l-1) / nbDiv) + 'px');
+			});
+		});
+		
+	};
+	this.initializeMenu = initializeMenu;
+};
+
+/*
+ * Classe permettant la gestion de la page de menu de jeux.
+ */
+pageMenuJeux = function () {
+	
+	var imageManager = new imageHandler();
+	this.imageManager = imageManager;
+	
+	/*
+	 * Fonction permettant d'initialiser la page.
+	 */
+	var initialize = function () {
+		
+		// On initialise le menu
+		initializeMenu();
+		
+		// On initialise les textes des menus
+		initializeMenuCaption();
+	};
+	this.initialize = initialize;
+	
+	$(window).resize(function(){
+		initialize();
+	});
+	
+	/*
+	 * Fonction permettant d'initialiser les menus de la page
+	 */
+	var initializeMenu = function () {
+		
+		// On resize les lignes
+		var h = $(window).height();
+		var l = $(window).width();
+
+		// On enlève les 10 px de padding
+		h -= 50;
+		
+		// On divise par trois
+		hu = h / 3;
+		hu = Math.round(hu);
+		
+		// On répercute sur les lignes
+		$('.ligne').css('height', hu + 'px');
+		$('.tile').css('height', hu + 'px');
+		nbDiv = 0;
+		$('.ligne').each(function() { 
+			nbDiv = 0;
+			$(this).css('width', l);
+			$(this).find('.tile').each(function() {
+				nbDiv++;
+			});
+			$(this).find('.tile').each(function() {
+				$(this).css('width', Math.round((l-1) / nbDiv) + 'px');
+			});
+		});
+	};
+	this.initializeMenu = initializeMenu;
+	
+	/*
+	 * Fonction permettant d'initialiser les intitulés des menus
+	 */
+	var initializeMenuCaption = function () {
+		$('#content-maj2min').html(imageManager.getHtmlRessource('A', true) + " = " + imageManager.getHtmlRessource('a', true));
+		$('#content-min2maj').html(imageManager.getHtmlRessource('a', true) + " = " + imageManager.getHtmlRessource('A', true));
+		$('#content-ordre').html(imageManager.getHtmlRessource('A', true) + ", " + 
+				                 imageManager.getHtmlRessource('B', true) + ", " +
+				                 imageManager.getHtmlRessource('C', true) + ", " +
+				                 imageManager.getHtmlRessource('D', true) + " ... "
+				                 );
+	};
+	this.initializeMenuCaption = initializeMenuCaption;
 }
