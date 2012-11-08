@@ -293,7 +293,7 @@ pageMainMenu = function () {
 				nbDiv++;
 			});
 			$(this).find('.tile').each(function() {
-				$(this).css('width', Math.round((l-1) / nbDiv) + 'px');
+				$(this).css('width', Math.round((l-2) / nbDiv) + 'px');
 			});
 		});
 		
@@ -353,7 +353,7 @@ pageMenuJeux = function () {
 				nbDiv++;
 			});
 			$(this).find('.tile').each(function() {
-				$(this).css('width', Math.round((l-1) / nbDiv) + 'px');
+				$(this).css('width', Math.round((l-2) / nbDiv) + 'px');
 			});
 		});
 	};
