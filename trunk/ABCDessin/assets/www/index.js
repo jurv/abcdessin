@@ -309,6 +309,12 @@ pageJeuxEcoute = function () {
     }
     this.validate = validate;
     
+    var readLetter = function() {
+        // On lance la lecture de la lettre
+        managerSong.playSound(this.validLetter);
+    } 
+    this.readLetter = readLetter;
+    
     /*
      * Fonction permettant de passer automatiquement les lettres toutes les 5 secondes.
      */
