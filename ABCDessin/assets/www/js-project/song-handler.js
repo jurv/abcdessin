@@ -93,6 +93,7 @@ soundHandler = function () {
 	}
 	
 	this.playHTML5Audio = function (src) {
+	  $('#playSound').remove();
 	  $('body').append('<span id="playSound"></span>');
 	  $('#playSound').html("<audio autoplay> <source src='" + src + "' type='audio/mpeg' /> </audio>");
 	  
