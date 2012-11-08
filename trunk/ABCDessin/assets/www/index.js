@@ -481,62 +481,106 @@ pageMenuJeux = function () {
  * Classe de gestion du score
  */
 var scoreManager = function(){
-    
-    var bddManager = new bddHandler();
-    this.bddManager = bddManager;
-    
-    /*
-     * Fonction permettant de rï¿½cupï¿½rer un score
-     * @param gameName nom du jeu dont on veut recup les scores
-     * @return scoreArray Tableau de tableaux (scores bon, mauvais et leur date)
-     */
-    var getScores = function getScores(gameName) {
-        var i=0;
-        //Chaque score d'une session d'un jeu
-        var scoresLine;
-        //Score d'une session serialisï¿½
-        var storedScores;
-        // Tableau de tableaux (scores bon, mauvais et leur date) ï¿½ retourner
-        var scoreArray = new Array();
-        //if (gameName != "dessiner" || gameName != "ordre" || gameName != "cu2maj" || gameName != "maj2min")
-        while (bddManager.getValue(gameName + "-"+ i)){
-            storedScores = bddManager.getValue(gameName + "-"+ i);
-            scoresLine=JSON.parse(storedScores);
-            scoreArray[i] = scoresLine;
-            i++;
-        }
-        return scoreArray;
-    }; 
-    this.getScores = getScores;
-    
-    /*
-     * Fonction permettant d'ajouter un score au jeu "dessiner"
-     * @param gameName nom du jeu dont on veut ajouter le score
-     * @param goodScore nombre de bonne rï¿½ponse
-     * @param badScore nombre de mauvaise rï¿½ponse
-     * @param date date de la session
-     */
-    var addScore = function (gameName, goodScore,badScore,date) {
-        //Recupï¿½rer l'index de la derniere valeur presente en bdd pour un jeu donnï¿½
-        var i = 0;
-        while (bddManager.getValue(gameName +"-"+ i)){
-            i++;
-        }
-        var row = {"goodScore" : goodScore, "badScore" : badScore, "date" : date.toLocaleFormat("%x").toString() };
-        bddManager.setValue(JSON.stringify(row),gameName +"-"+ i);
-    };
-    this.addScore = addScore;
+	
+	var bddManager = new bddHandler();
+	this.bddManager = bddManager;
+	
+	/*
+	 * Fonction permettant de rï¿½cupï¿½rer un score
+	 * @param gameName nom du jeu dont on veut recup les scores
+	 * @return scoreArray Tableau de tableaux (scores bon, mauvais et leur date)
+	 */
+	var getScores = function getScores(gameName) {
+		var i=0;
+		//Chaque score d'une session d'un jeu
+		var scoresLine;
+		//Score d'une session serialisï¿½
+		var storedScores;
+		// Tableau de tableaux (scores bon, mauvais et leur date) ï¿½ retourner
+		var scoreArray = new Array();;
+		//if (gameName != "dessiner" || gameName != "ordre" || gameName != "cu2maj" || gameName != "maj2min")
+		while (bddManager.getValue(gameName + "-"+ i)){
+			storedScores = bddManager.getValue(gameName + "-"+ i);
+			scoresLine=JSON.parse(storedScores);
+			scoreArray[i] = scoresLine;
+			i++;
+		}
+		return scoreArray;
+	}; 
+	this.getScores = getScores;
+	
+	/*
+	 * Fonction permettant de recuperer le score par la date et le nom du jeu
+	 * @param gameName : nom du jeu dont on veut le score
+	 * @param date : date à laquelle on veut le score
+	 */
+	var getScoreByDate = function(gameName,date){
+		scoreArrayTotal = getScores(gameName);
+		var i = 0;
+		for (i = 0; i < scoreArrayTotal.length; i++){
+			if (scoreArrayTotal[i].date === date){
+				return scoreArrayTotal[i];
+			}
+		}
+		return -1;
+	};
+	this.getScoreByDate = getScoreByDate;
+	
+	/*
+	 * Fonction permettant d'ajouter un score au jeu "dessiner"
+	 * @param gameName nom du jeu dont on veut ajouter le score
+	 * @param goodScore nombre de bonne rï¿½ponse
+	 * @param badScore nombre de mauvaise rï¿½ponse
+	 * @param date date de la session
+	 */
+	var addScore = function (gameName, goodScore,badScore,date) {
+		//Recupï¿½rer l'index de la derniere valeur presente en bdd pour un jeu donnï¿½
+		var i = 0;
+		while (bddManager.getValue(gameName +"-"+ i)){
+			i++;
+		}
+		var row = {"goodScore" : goodScore, "badScore" : badScore, "date" : date.toLocaleFormat("%x").toString() };
+		bddManager.setValue(JSON.stringify(row),gameName +"-"+ i);
+		console.log('index.js : scoreManager : Insertion de ' + JSON.stringify(row));
+	};
+	this.addScore = addScore;
+	/*
+	 * 
+	 */
+	var pushBadScore = function(gameName,badScore){
+		today = new Date;
+		day = today.getDate();
+		month = (today.getMonth())+1;
+		year = today.getFullYear();
+		strDate= day + "/" + month + "/" + year;
+		var scoreDuJour = getScoreByDate(gameName,strDate);
+		scoreDuJour.badScore = scoreDuJour.badScore + badScore;
+		addScore(gameName,scoreDuJour.goodScore,scoreDuJour.badScore, strDate);
+	};
+	this.pushBadScore = pushBadScore;
+	
+	var pushGoodScore = function(gameName,goodScore){
+		today = new Date;
+		day = today.getDate();
+		month = (today.getMonth())+1;
+		year = today.getFullYear();
+		strDate= day + "/" + month + "/" + year;
+		var scoreDuJour = getScoreByDate(gameName,strDate);
+		scoreDuJour.goodScore = scoreDuJour.goodScore + goodScore;
+		addScore(gameName,scoreDuJour.goodScore,scoreDuJour.badScore, strDate);
+	};
+	this.pushBadScore = pushBadScore;
 
-    /*
-     * Test
-     */
-    testScore = function () {
-        var bonneReponse="12";
-        var mauvaisesReponse="6";
-        var date = new Date("01/01/2012");
-        addScore("dessin",bonneReponse,mauvaisesReponse, date);
-        var scoreArray = getScores(dessiner);
-        alert(scoreArray[0].goodScore);
-    };
-    this.testScore = testScore;
+	/*
+	 * Test
+	 */
+	testScore = function () {
+		var bonneReponse="12";
+		var mauvaisesReponse="6";
+		var date = new Date("01/01/2012");
+		addScore("dessin",bonneReponse,mauvaisesReponse, date);
+		var scoreArray = getScores("dessin");
+		alert(scoreArray[0].goodScore);
+	};
+	this.testScore = testScore;
 };
