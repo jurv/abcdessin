@@ -5,16 +5,50 @@
     <title>ABCDessin</title>
 
  	<link rel="stylesheet" href="jquery.mobile/jquery.mobile-1.1.0.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
 
     <script src="jquery.mobile/jquery-1.7.2.min"></script>
 	<script src="jquery.mobile/jquery.mobile-1.1.0.min.js"></script>
 	<script type="text/javascript" charset="utf-8" src="cordova-1.9.0.js"></script>
-	<script type="text/javascript" charset="utf-8" src="index.js"></script>
+	<script type="text/javascript" charset="utf-8" src="js-project/image-handler.js"></script>
+    <script type="text/javascript" charset="utf-8" src="index.js"></script>
   
 	<!-- CDN Respositories: For production, replace lines above with these uncommented minified versions -->
 	<!-- <link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css" />-->
 	<!-- <script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>-->
 	<!-- <script src="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js"></script>-->
+	
+	<script type="text/javascript">
+	    var imageManager = new imageHandler();
+        //imageManager.getRessource('a');
+        
+        function init(){
+            $(".desord").each(function(){
+                letter = imageManager.generateRandomLetter();
+                ressource = imageManager.getHtmlRessource(letter, true);
+                $(this).html(ressource);
+            });
+            $(".ord").each(function(){
+                $(this).html("");
+            });
+        }
+        
+        jQuery(document).ready(function(){
+            init();
+            $(".desord").click(function(){
+                val = $(this).html();
+                place = false;
+                $(".ord").each(function(){
+                    if($(this).html() == "" && !place){
+                        place = true;
+                        $(this).html(val);
+                        return;
+                    }
+                });
+            });
+        });
+	</script>
+	
 	</head>
   
   <body>
@@ -23,7 +57,30 @@
 			<h1>Abcd</h1>
 	 		<a href="index.html" rel="external" data-icon="home" data-iconpos="notext" id="intro" class="ui-btn-right">Accueil</a>
 		</div>
-		<div data-role="content" data-theme="c">			
+		<div data-role="content" data-theme="c">
+            <div class="desord" style="text-align:center;font-size:8em;width:45%;margin:1%;min-height:150px;float:left;border:1px solid #000000;">
+                
+            </div>
+            <div class="desord" style="text-align:center;font-size:8em;width:45%;margin:1%;min-height:150px;float:right;border:1px solid #000000;">
+                
+            </div>
+            <div class="desord" style="text-align:center;font-size:8em;width:45%;margin:1%;min-height:150px;float:left;border:1px solid #000000;">
+                
+            </div>
+            <div class="desord" style="text-align:center;font-size:8em;width:45%;margin:1%;min-height:150px;float:right;border:1px solid #000000;">
+                
+            </div>
+            
+            <div class="reponse">
+                <div class="ord" style="text-align:center;font-size:4em;width:22%;margin:1%;min-height:100px;float:left;border:1px solid #000000;">
+                </div>
+                <div class="ord" style="text-align:center;font-size:4em;width:22%;margin:1%;min-height:100px;float:left;border:1px solid #000000;">
+                </div>
+                <div class="ord" style="text-align:center;font-size:4em;width:22%;margin:1%;min-height:100px;float:left;border:1px solid #000000;">
+                </div>
+                <div class="ord" style="text-align:center;font-size:4em;width:22%;margin:1%;min-height:100px;float:left;border:1px solid #000000;">
+                </div>
+            </div>		
 		</div>
 	</div>			
   </body>
