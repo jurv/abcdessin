@@ -37,7 +37,7 @@
                 $(this).html(ressource);
             });
             $(".ord").each(function(){
-                $(this).html("");
+                $(this).html("&nbsp;");
             });
             
             tab.sort();
@@ -46,7 +46,6 @@
         function validate(el){
             html   = $(el).html();
             letter = $(el).find("span:first").html();
-            place  = false;
             
             position = tabReponse.length;
 
@@ -54,8 +53,11 @@
                 $(".ord").eq(position).html(html);
                 tabReponse.push(letter);
                 if((position + 1) == tab.length){
-                    alert("Bravo !");
-                    init();
+                    myTimer = setTimeout(function(){
+                        alert("Bravo !");
+                        init();
+                    }, 
+                    500);
                 }
             }else{
             
@@ -79,27 +81,27 @@
 	 		<a href="index.html" rel="external" data-icon="home" data-iconpos="notext" id="intro" class="ui-btn-right">Accueil</a>
 		</div>
 		<div data-role="content" data-theme="a">
-            <div class="desord" style="text-align:center;font-size:8em;width:45%;margin:1%;min-height:150px;float:left;border:1px solid #000000;">
+            <div class="desord left">
                 
             </div>
-            <div class="desord" style="text-align:center;font-size:8em;width:45%;margin:1%;min-height:150px;float:right;border:1px solid #000000;">
+            <div class="desord right">
                 
             </div>
-            <div class="desord" style="text-align:center;font-size:8em;width:45%;margin:1%;min-height:150px;float:left;border:1px solid #000000;">
+            <div class="desord left">
                 
             </div>
-            <div class="desord" style="text-align:center;font-size:8em;width:45%;margin:1%;min-height:150px;float:right;border:1px solid #000000;">
+            <div class="desord right">
                 
             </div>
             
             <div class="reponse">
-                <div class="ord" style="text-align:center;font-size:4em;width:22%;margin:1%;min-height:100px;float:left;border:1px solid #000000;">
+                <div class="ord">
                 </div>
-                <div class="ord" style="text-align:center;font-size:4em;width:22%;margin:1%;min-height:100px;float:left;border:1px solid #000000;">
+                <div class="ord">
                 </div>
-                <div class="ord" style="text-align:center;font-size:4em;width:22%;margin:1%;min-height:100px;float:left;border:1px solid #000000;">
+                <div class="ord">
                 </div>
-                <div class="ord" style="text-align:center;font-size:4em;width:22%;margin:1%;min-height:100px;float:left;border:1px solid #000000;">
+                <div class="ord">
                 </div>
             </div>		
 		</div>
