@@ -291,7 +291,7 @@ pageJeuxEcoute = function () {
         this.validLetter = tabLetters[position];
         
         // On lance la lecture de la lettre
-        managerSong.playSound(this.letter);
+        managerSong.playSound(this.validLetter);
     }
     this.toNextLetter = toNextLetter;
     
@@ -302,9 +302,9 @@ pageJeuxEcoute = function () {
         if(letter == this.validLetter){
             $("#validletter").html(printCapitalLetter(this.validLetter,true));
             $("#validletter").css("background","#99E26E")
-            //managerSong.playWin();
+            managerSong.playWin();
         }else{
-            //managerSong.playFail();
+            managerSong.playFail();
         }
     }
     this.validate = validate;
@@ -491,7 +491,7 @@ var scoreManager = function(){
         //Score d'une session serialis�
         var storedScores;
         // Tableau de tableaux (scores bon, mauvais et leur date) � retourner
-        var scoreArray = new Array();;
+        var scoreArray = new Array();
         //if (gameName != "dessiner" || gameName != "ordre" || gameName != "cu2maj" || gameName != "maj2min")
         while (bddManager.getValue(gameName + "-"+ i)){
             storedScores = bddManager.getValue(gameName + "-"+ i);
