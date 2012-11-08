@@ -183,4 +183,29 @@ a .tile
     background-color: #22C02D;
 }
 
+.ord{
+    text-align:center;
+    font-size:4em;
+    width:22%;
+    margin:1%;
+    min-height:100px;
+    float:left;
+    border:1px solid #000000;
+}
 
+.desord{
+    text-align:center;
+    font-size:8em;
+    width:45%;
+    margin:1%;
+    min-height:150px;
+    border:1px solid #000000;
+}
+
+.right{
+    float:right;
+}
+
+.left{
+    float:left;
+}

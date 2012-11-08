@@ -30,15 +30,13 @@
                 h = win.innerHeight - (win.innerHeight * 0.4),
                 container = doc.getElementById('container');
             
-            //if( win.navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry)/i) ) {
-                canvas.height = h;
-                canvas.width = w;
-                canvas.style.height = h+"px";
-                canvas.style.width = w+"px";
-                container.style.height = h+"px";
-                container.style.width = w+"px";
-            //}
-
+            canvas.height = h;
+            canvas.width = w;
+            canvas.style.height = h+"px";
+            canvas.style.width = w+"px";
+            container.style.height = h+"px";
+            container.style.width = w+"px";
+            
             $('#simple_sketch').sketch({defaultSize: 18});
 
             jQuery("#generate").click(function(){

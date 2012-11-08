@@ -122,7 +122,7 @@ pageApprentissage = function () {
 		currentLetter = String.fromCharCode(charIndex);
 	}
 	
-	/*
+    /*
 	 * Fonction permettant de récupérer la lettre précédent celle passée en paramètres
 	 */
 	var getPreviousLetter = function ( ) {
