@@ -35,11 +35,17 @@ function analyse(){
 function validate(){
     //alert("Nb de pixels rouge : " + pixelsFin.rouge + " | Acceptés : " + pixelsDeb.rouge * 0.3);
     //alert("Nb de pixels blanc : " + pixelsFin.blanc + " | Acceptés : " + pixelsDeb.blanc * 0.9);
+	
+	// Manager des sons
+	var managerSong = new soundHandler();
+	this.managerSong = managerSong;
 
     if(pixelsFin.rouge <= pixelsDeb.rouge * 0.35 && pixelsFin.blanc >= pixelsDeb.blanc * 0.95) {
-        alert("OK");
+    	managerSong.playWin();
+    	alert("OK");
     } else {
         alert("KO");
+        managerSong.playFail();
     }
 }
 
