@@ -132,4 +132,50 @@ soundHandler = function () {
 		else
 			console.log('sound-handler : playSound : Le paramètre n\'est pas valide.');
 	}
+	/*
+	 * Fonction jouant la musique de la vitoire
+	 */
+	this.playWin = function () {
+
+		
+		// Chemin du fichier audio
+		var soundPath = this.mediaPath + "/win" + this.extension;
+		
+		// Test du device Mobile ou Non ? 
+		if(this.isInMobile()){
+			console.log('sound-handler : playWin : Le device est un mobile');
+			
+			// On utilise l'API de cordova pour la lecture
+			this.playCordovaAudio(soundPath);
+		}
+		else {
+			console.log('sound-handler : playWin : Le device est n\'est pas un mobile');
+			
+			// On utilise HTML 5 pour la lecture du fichier Audio
+			this.playHTML5Audio(soundPath);
+		}	
+	}
+	/*
+	 * Fonction jouant la musique de la defaite
+	 */
+	this.playFail = function () {
+
+		
+		// Chemin du fichier audio
+		var soundPath = this.mediaPath + "/fail" + this.extension;
+		
+		// Test du device Mobile ou Non ? 
+		if(this.isInMobile()){
+			console.log('sound-handler : playFail : Le device est un mobile');
+			
+			// On utilise l'API de cordova pour la lecture
+			this.playCordovaAudio(soundPath);
+		}
+		else {
+			console.log('sound-handler : playFail : Le device est n\'est pas un mobile');
+			
+			// On utilise HTML 5 pour la lecture du fichier Audio
+			this.playHTML5Audio(soundPath);
+		}	
+	}
 }
