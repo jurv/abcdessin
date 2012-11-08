@@ -107,4 +107,14 @@ imageHandler = function() {
 		console.log("image-handler : getRessource : Rendu HTML : " + htmlRender);
 		return htmlRender;
 	};
+	
+	this.generateRandomLetter = function()
+	{
+	    var theLetters=["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+	    //You can change theLetters to include whatever characters you want the function
+	    //to pick from. You can even change its values to numbers!
+	    return theLetters[Math.floor(Math.random()*theLetters.length)];
+	    //Math.floor truncates the number passed in to the decimal point, and
+	    //Math.random returns a random number each time it is called.
+    };
 };
