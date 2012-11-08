@@ -47,6 +47,10 @@ h3 {
 	text-shadow: #FFFFFF 0px 1px 1px;
 }
 
+a{
+	text-decoration:none;
+}
+
 #page{
 }
 
@@ -73,6 +77,7 @@ h3 {
 	border:1px solid #848484;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
+	height:280px;
 }
 
 .mediumDisplay
@@ -90,7 +95,7 @@ h3 {
 	margin-top: 10px
 }
 
-.mediumDisplay > span, .bigDisplay > span{
+.smallDisplay > span, .mediumDisplay > span, .bigDisplay > span{
 	display:block;
 	width:100%;
 	text-align:center;
@@ -99,7 +104,7 @@ h3 {
 .smallDisplay
 {
 	float:left;
-	font-size:8em;
+	font-size:5em;
 	height:100px;
 	width:32%;
 	overflow: hidden;

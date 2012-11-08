@@ -39,22 +39,21 @@
 		<div id="content" data-role="content" data-theme="a">
 			<div id="diapo">	
 				<div id="diapo_control" data-role="controlgroup" data-type="horizontal">
-					<button data-icon="step-backward" onclick="pageManager.toPreviousLetter();">&nbsp</button>
-					<button data-icon="step-forward"  onclick="pageManager.toNextLetter();">&nbsp</button>
+					<button data-icon="step-forward" onclick="pageManager.toNextLetter();">&nbsp</button>
 					<button data-icon="stop" onclick="pageManager.stop();">&nbsp</button>
 					<button data-icon="play" onclick="pageManager.play();">&nbsp</button>
 				</div
 				<div id="diapo-display">
-					<div id="min_letter_display" class="bigDisplay" onclick="pageManager.readLetter();"></div>
-					<div id="" class="lineBloc">
-						<div id="min_letter_display" class="smallDisplay" onclick="pageManager.readLetter();"></div>
-						<div id="cur_letter_display" class="smallDisplay" onclick="pageManager.readLetter();"></div>
-						<div id="cur_letter_display" class="smallDisplay" onclick="pageManager.readLetter();"></div>
+					<div id="validletter" class="bigDisplay" onclick="pageManager.readLetter();"></div>
+					<div class="lineBloc">
+						<div class="smallDisplay" onclick="pageManager.validate(this);"></div>
+						<div class="smallDisplay" onclick="pageManager.validate(this);"></div>
+						<div class="smallDisplay" onclick="pageManager.validate(this);"></div>
 					</div>
 					<div class="lineBloc">
-						<div id="min_letter_display" class="smallDisplay" onclick="pageManager.readLetter();"></div>
-						<div id="cur_letter_display" class="smallDisplay" onclick="pageManager.readLetter();"></div>
-						<div id="cur_letter_display" class="smallDisplay" onclick="pageManager.readLetter();"></div>
+						<div class="smallDisplay" onclick="pageManager.validate(this);"></div>
+						<div class="smallDisplay" onclick="pageManager.validate(this);"></div>
+						<div class="smallDisplay" onclick="pageManager.validate(this);"></div>
 					</div>
 				</div>
 			</div>
