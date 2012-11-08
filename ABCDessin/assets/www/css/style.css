@@ -59,21 +59,33 @@ h3 {
 	margin-right: 3%;
 }
 
+#diapo_control{
+	overflow:hidden;
+}
 
+.bigDisplay
+{
+	font-size:10em;
+	margin-top: 10px;
+	background:white;
+	border:1px solid #848484;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
 
 .mediumDisplay
 {
 	float:left;
 	font-size:8em;
-	height:160px;
+	height:200px;
 	width:49%;
 	overflow: hidden;
 	background:white;
 	border:1px solid #848484;
-	margin-left: 11px;
+	margin-left: 1%;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
-
+	margin-top: 10px
 }
 
 .mediumDisplay > span, .bigDisplay > span{
@@ -82,16 +94,27 @@ h3 {
 	text-align:center;
 }
 
-.bigDisplay
+.smallDisplay
 {
-	font-size:10em;
-	margin-bottom:10px;
+	float:left;
+	font-size:8em;
+	height:100px;
+	width:32%;
+	overflow: hidden;
 	background:white;
 	border:1px solid #848484;
+	margin-left: 1%;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
+	margin-top: 10px
 }
 
-.lineBloc > .mediumDisplay:first-child {
+.lineBloc > .mediumDisplay:first-child, .lineBloc > .smallDisplay:first-child {
 	margin-left: 0px;
+}
+
+.btnControl {
+	margin:auto;
+	overflow:hidden;
+	width: 80%;
 }

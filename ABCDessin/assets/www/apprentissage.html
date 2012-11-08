@@ -4,11 +4,12 @@
     <meta http-equiv="Content-type" name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width">
     <title>ABCDessin</title>
 
- 	<link rel="stylesheet" href="jquery.mobile/jquery.mobile-1.1.0.min.css" />
- 	<link rel="stylesheet" href="css/icons-pack/jqm-icons.css" />
- 	<link rel="stylesheet" href="css/style.css" />
-
-    <script src="jquery.mobile/jquery-1.7.2.min"></script>
+	<link rel="stylesheet" href="jquery.mobile.custom/custom.css" />
+	<link rel="stylesheet" href="jquery.mobile/jquery.mobile.structure-1.2.0.css" />
+	<link rel="stylesheet" href="css/icons-pack/jqm-icons.css" />
+	<link rel="stylesheet" href="css/style.css" />
+	
+    <script src="jquery.mobile/jquery-1.7.2.min.js"></script>
 	<script src="jquery.mobile/jquery.mobile-1.1.0.min.js"></script>
 	<script type="text/javascript" charset="utf-8" src="cordova-1.9.0.js"></script>
 	
@@ -36,21 +37,19 @@
 	<!-- <script src="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js"></script>-->
 	</head>
   <body>
-	<div id="page" data-role="page" id="page-apprentissage" class="type-interior" data-theme="b">
-		<div data-role="header" data-theme="b">
+	<div id="page" data-role="page" id="page-apprentissage" class="type-interior" data-theme="a">
+		<div data-role="header" data-theme="a">
 			<h1>Apprentissage</h1>
 	 		<a href="index.html" rel="external"  data-icon="home" data-iconpos="notext" id="intro" class="ui-btn-right">Accueil</a>
 		</div>
-		<div id="content" data-role="content" data-theme="c">
-			<div id="diapo">	
-				<div id="diapo-control">
-					<div id="diapo_control" data-role="controlgroup" data-type="horizontal">
-					<button data-icon="step-backward" onclick="pageManager.toPreviousLetter();"> Pr&eacute;c&eacute;dent </button>
-					<button data-icon="stop" onclick="pageManager.stop();"> Stop </button>
-					<button data-icon="play"  onclick="pageManager.play();"> Lecture </button>
-					<button data-icon="step-forward"  onclick="pageManager.toNextLetter();"> Suivant </button>
-					</div>
-				</div>
+		<div id="content" data-role="content" data-theme="a">
+			<div id="diapo">
+				<div id="diapo_control" data-role="controlgroup" data-type="horizontal">
+					<button data-icon="step-backward" onclick="pageManager.toPreviousLetter();">&nbsp</button>
+					<button data-icon="step-forward"  onclick="pageManager.toNextLetter();">&nbsp</button>
+					<button data-icon="stop" onclick="pageManager.stop();">&nbsp</button>
+					<button data-icon="play" onclick="pageManager.play();">&nbsp</button>
+				</div
 				<div id="diapo-display">
 					<div id="maj_letter_display" class="bigDisplay" onclick="pageManager.readLetter();"></div>
 					<div class="lineBloc">
