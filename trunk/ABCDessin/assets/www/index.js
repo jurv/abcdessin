@@ -235,7 +235,23 @@ pageApprentissage = function () {
  * Classe permettant la gestion de la page "Jeux d'écoute".
  */
 pageJeuxEcoute = function () {
-	
+    // Numéro d'autolecture
+    var autoPlayInt = 0;
+    this.autoPlayInt = autoPlayInt;
+    
+    // Génération de la lettre à trouver
+    // Séléction de la lettre dans la plage minuscule de la table ascii
+    var currentLetter = 97 + Math.floor(Math.random() * 122);
+    this.currentLetter = String.fromCharCode(currentLetter);
+    alert(this.currentLetter +currentLetter);
+    // Manager des lettres
+    var managerLetter = new imageHandler();
+    this.managerLetter = managerLetter;
+    
+    // Manager des sons
+    var managerSong = new soundHandler();
+    this.managerSong = managerSong;
+    
 	/*
 	 * Fonction permettant d'initialiser la page.
 	 */
