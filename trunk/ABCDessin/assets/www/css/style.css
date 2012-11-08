@@ -51,6 +51,8 @@ h3 {
 }
 
 #content{
+	height : auto;
+	padding : 0px;
 }
 
 #diapo
@@ -118,3 +120,67 @@ h3 {
 	overflow:hidden;
 	width: 80%;
 }
+
+/*
+ * Gestion des menus
+ */
+ 
+.page 
+{
+    width:auto;
+    height:auto;    
+}
+  
+.ligne
+{
+    width:auto;
+    padding : 1px;
+    height:auto;
+    display:table;  
+    color : white;
+	font-size : 2em;  
+	overflow: hidden;
+}
+
+.tile
+{
+    width:100px; 
+    float:left;
+    text-indent: 20px;
+}
+
+a .tile
+{
+	text-decoration: none;
+	font-weight: normal;
+	color : white;
+}
+
+.tile img 
+{
+	margin-left : 45%;
+	margin-right : auto;
+}
+  
+.tileLargo
+{
+    width:210px;
+}
+
+.jaune{
+    background:#E9E100;
+}
+  
+.rouge{
+    background:#CD0000; 
+}
+  
+.bleu{
+    background:#4682B4;
+}
+  
+.vert{
+    background-color: #22C02D;
+}
+
+

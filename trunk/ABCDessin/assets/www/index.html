@@ -15,6 +15,14 @@
 	<script type="text/javascript" charset="utf-8" src="js-project/image-handler.js"></script>
 	<script type="text/javascript" charset="utf-8" src="js-project/song-handler.js"></script>
 	<script type="text/javascript" charset="utf-8" src="index.js"></script>
+	<script type="text/javascript">
+		pageManager = null;
+		$(document).ready(function() {
+	    	// Initialiseur du manager de la page
+			pageManager = new pageMainMenu();
+			pageManager.initialize();
+		});
+	</script>
   
 	<!-- CDN Respositories: For production, replace lines above with these uncommented minified versions -->
 	<!-- <link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css" />-->
@@ -28,21 +36,41 @@
 	 		<a href="#" data-icon="home" data-iconpos="notext" id="intro" class="ui-btn-right">Accueil
 	 		</a>
 		</div>
-		<div data-role="content" data-theme="a" id="content">
-			<div id="content">	
-				<a data-role="button" data-theme="a" href="apprentissage.html" rel="external"  data-icon="star" data-iconpos="right">
-	            	Apprendre
-	        	</a>
-	        	<a data-role="button" data-theme="a" href="menu-jeux.html" rel="external"  data-icon="star" data-iconpos="right">
-	            	Jeux
-	        	</a>
-	        	<a data-role="button" data-theme="a" href="dessiner.html" rel="external"  data-icon="star" data-iconpos="right">
-	            	Dessiner
-	        	</a>
-	        	<a data-role="button" data-theme="a" href="resultats.html" rel="external"  data-icon="star" data-iconpos="right">
-	            	R&eacute;sultats
-	        	</a>
-			</div>
+<<<<<<< .mine
+		<div data-role="content" data-theme="c" id="content">	
+				<div class="page">
+				    
+				    <div class="ligne">        
+				    	<a href="apprentissage.html"> 
+				        	<div class="tile tileLargo rouge">
+				        		Apprendre <br />
+				        		<img src="css/images/apprendre.png" />
+				        	</div>
+				        </a>
+				    </div>
+				    <div class="ligne">    
+				    	<a href="menu-jeux.html" rel="external">              
+				        	<div class="tile jaune">	
+				        		Jeux <br />
+				        		<img src="css/images/jeux.png" />
+				        	</div>
+				        </a>
+				        <a href="dessiner.html"> 
+				        	<div class="tile bleu">
+				        		Dessiner <br />
+				        		<img src="css/images/dessiner.png" />
+				        	</div>  
+				        </a>        
+				    </div>      
+				    <div class="ligne">   
+				    	<a href="resultats.html">              
+				        	<div class="tile tileLargo vert">
+				        		R&eacute;sultats <br />
+				        		<img src="css/images/resultats.png" />
+				        	</div>
+				        </a> 
+				    </div>
+				</div>
 		</div>
 	</div>			
   </body>

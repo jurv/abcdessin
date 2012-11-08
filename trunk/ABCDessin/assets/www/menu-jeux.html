@@ -4,12 +4,22 @@
     <meta http-equiv="Content-type" name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width">
     <title>ABCDessin</title>
 
+	<link rel="stylesheet" href="css/style.css" />
  	<link rel="stylesheet" href="jquery.mobile/jquery.mobile-1.1.0.min.css" />
 
     <script src="jquery.mobile/jquery-1.7.2.min"></script>
 	<script src="jquery.mobile/jquery.mobile-1.1.0.min.js"></script>
 	<script type="text/javascript" charset="utf-8" src="cordova-1.9.0.js"></script>
+	<script type="text/javascript" charset="utf-8" src="js-project/image-handler.js"></script>
 	<script type="text/javascript" charset="utf-8" src="index.js"></script>
+	<script type="text/javascript">
+		pageManager = null;
+		$(document).ready(function() {
+	    	// Initialiseur du manager de la page
+			pageManager = new pageMenuJeux();
+			pageManager.initialize();
+		});
+	</script>
   
 	<!-- CDN Respositories: For production, replace lines above with these uncommented minified versions -->
 	<!-- <link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css" />-->
@@ -23,19 +33,37 @@
 			<h1>Jouer</h1>
 	 		<a href="index.html" rel="external" data-icon="home" data-iconpos="notext" id="intro" class="ui-btn-right">Accueil</a>
 		</div>
-		<div data-role="content" data-theme="c">		
-			<a data-role="button" data-theme="b" href="ecouter.html" rel="external"  data-icon="star" data-iconpos="right">
-            	Ecouter
-        	</a>
-        	<a data-role="button" data-theme="b" href="maj-2-min.html" rel="external"  data-icon="star" data-iconpos="right">
-            	A -> a
-        	</a>
-        	<a data-role="button" data-theme="b" href="cur-2-maj.html" rel="external"  data-icon="star" data-iconpos="right">
-            	a -> A
-        	</a>
-        	<a data-role="button" data-theme="b" href="ordre.html" rel="external"  data-icon="star" data-iconpos="right">
-            	Abcd
-        	</a>		
+		<div id="content" data-role="content" data-theme="c">		
+			<div class="page">
+				    <div class="ligne">        
+				    	<a href="ecouter.html"> 
+				        	<div class="tile tileLargo jaune">
+				        		Ecouter <br />
+				        		<img src="css/images/ecoute.png" />
+				        	</div>
+				        </a>
+				    </div>
+				    <div class="ligne">    
+				    	<a href="maj-2-min.html">              
+				        	<div class="tile vert">	
+				        		<div id="content-maj2min"></div>
+				        	</div>
+				        </a>
+				        <a href="cur-2-maj.html"> 
+				        	<div class="tile rouge">
+				        		<div id="content-min2maj"></div>
+				        	</div>  
+				        </a>        
+				    </div>      
+				    <div class="ligne">   
+				    	<a href="ordre.html">              
+				        	<div class="tile tileLargo bleu">
+				        		<div id="content-ordre"></div>
+				        	</div>
+				        </a> 
+				    </div>
+				</div>
+        			
 		</div>
 	</div>			
   </body>
