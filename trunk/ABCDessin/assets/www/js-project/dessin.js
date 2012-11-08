@@ -36,7 +36,7 @@ function validate(){
     //alert("Nb de pixels rouge : " + pixelsFin.rouge + " | Acceptés : " + pixelsDeb.rouge * 0.3);
     //alert("Nb de pixels blanc : " + pixelsFin.blanc + " | Acceptés : " + pixelsDeb.blanc * 0.9);
 
-    if(pixelsFin.rouge <= pixelsDeb.rouge * 0.3 && pixelsFin.blanc >= pixelsDeb.blanc * 0.90) {
+    if(pixelsFin.rouge <= pixelsDeb.rouge * 0.35 && pixelsFin.blanc >= pixelsDeb.blanc * 0.95) {
         alert("OK");
     } else {
         alert("KO");
@@ -49,7 +49,11 @@ function generate(){
     context.fillStyle = "#FF0000";
     context.font = "normal 20em Arial";
     
+    var imageManager = new imageHandler();
+    letter = imageManager.generateRandomLetter();
+    ressource = imageManager.getHtmlRessource(letter, true);
+    
     char = getRandomChar();
     
-    context.fillText(char, canvas.width/3, canvas.height/1.5);
+    context.fillText(letter, canvas.width/3, canvas.height/1.5);
 }

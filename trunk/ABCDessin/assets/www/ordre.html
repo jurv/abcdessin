@@ -4,10 +4,12 @@
     <meta http-equiv="Content-type" name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width">
     <title>ABCDessin</title>
 
- 	<link rel="stylesheet" href="jquery.mobile/jquery.mobile-1.1.0.min.css" />
+ 	<link rel="stylesheet" href="jquery.mobile.custom/custom.css" />
+    <link rel="stylesheet" href="jquery.mobile/jquery.mobile.structure-1.2.0.css" />
+    <link rel="stylesheet" href="css/icons-pack/jqm-icons.css" />
     <link rel="stylesheet" href="css/style.css" />
 
-    <script src="jquery.mobile/jquery-1.7.2.min"></script>
+    <script src="jquery.mobile/jquery-1.7.2.min.js"></script>
 	<script src="jquery.mobile/jquery.mobile-1.1.0.min.js"></script>
 	<script type="text/javascript" charset="utf-8" src="cordova-1.9.0.js"></script>
 	<script type="text/javascript" charset="utf-8" src="js-project/image-handler.js"></script>
@@ -19,32 +21,51 @@
 	<!-- <script src="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js"></script>-->
 	
 	<script type="text/javascript">
+	
 	    var imageManager = new imageHandler();
-        //imageManager.getRessource('a');
+        var tab, tabReponse;
         
         function init(){
+            tab        = new Array();
+            tabReponse = new Array();
+            
             $(".desord").each(function(){
-                letter = imageManager.generateRandomLetter();
+                letter    = imageManager.generateRandomLetter();
                 ressource = imageManager.getHtmlRessource(letter, true);
+                
+                tab.push(letter);
                 $(this).html(ressource);
             });
             $(".ord").each(function(){
                 $(this).html("");
             });
+            
+            tab.sort();
         }
         
+        function validate(el){
+            html   = $(el).html();
+            letter = $(el).find("span:first").html();
+            place  = false;
+            
+            position = tabReponse.length;
+
+            if(letter == tab[position]){
+                $(".ord").eq(position).html(html);
+                tabReponse.push(letter);
+                if((position + 1) == tab.length){
+                    alert("Bravo !");
+                    init();
+                }
+            }else{
+            
+            }
+        }
+
         jQuery(document).ready(function(){
             init();
             $(".desord").click(function(){
-                val = $(this).html();
-                place = false;
-                $(".ord").each(function(){
-                    if($(this).html() == "" && !place){
-                        place = true;
-                        $(this).html(val);
-                        return;
-                    }
-                });
+                validate($(this));
             });
         });
 	</script>
@@ -52,12 +73,12 @@
 	</head>
   
   <body>
-	<div data-role="page" id="page-ordre" class="type-interior" data-theme="b">
-		<div data-role="header" data-theme="b">
+	<div data-role="page" id="page-ordre" class="type-interior" data-theme="a">
+		<div data-role="header" data-theme="a">
 			<h1>Abcd</h1>
 	 		<a href="index.html" rel="external" data-icon="home" data-iconpos="notext" id="intro" class="ui-btn-right">Accueil</a>
 		</div>
-		<div data-role="content" data-theme="c">
+		<div data-role="content" data-theme="a">
             <div class="desord" style="text-align:center;font-size:8em;width:45%;margin:1%;min-height:150px;float:left;border:1px solid #000000;">
                 
             </div>
