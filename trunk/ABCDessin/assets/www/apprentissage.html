@@ -19,11 +19,13 @@
     
 	<script type="text/javascript" charset="utf-8" src="js-project/image-handler.js"></script>
 	<script type="text/javascript" charset="utf-8" src="js-project/song-handler.js"></script>
-	
+	<script type="text/javascript" charset="utf-8" src="js-project/bdd-handler.js"></script>
+    
 	<script type="text/javascript" charset="utf-8" src="index.js"></script>
 
 	<script type="text/javascript">
-		pageManager = null;
+		var myScoreManager = new scoreManager();
+        pageManager = null;
 		$(document).ready(function() {
 	    	// Initialiseur du manager de la page
 			pageManager = new pageApprentissage();
@@ -37,12 +39,12 @@
 	<!-- <script src="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js"></script>-->
 	</head>
   <body>
-	<div id="page" data-role="page" id="page-apprentissage" class="type-interior" data-theme="a">
-		<div data-role="header" data-theme="a">
+	<div id="page" data-role="page" id="page-apprentissage" class="type-interior"  style="background-image:url(media/images/background1.jpg);background-size:100% 100%;">
+		<div data-role="header" >
 			<h1>Apprentissage</h1>
 	 		<a href="index.html" rel="external"  data-icon="home" data-iconpos="notext" id="intro" class="ui-btn-right">Accueil</a>
 		</div>
-		<div id="content" data-role="content" data-theme="a">
+		<div id="content" data-role="content"  style="background:none;">
 			<div id="diapo">
 				<div id="diapo_control" data-role="controlgroup" data-type="horizontal">
 					<button data-icon="step-backward" onclick="pageManager.toPreviousLetter();">&nbsp</button>

@@ -14,6 +14,7 @@
 	<script type="text/javascript" charset="utf-8" src="cordova-1.9.0.js"></script>
 	<script type="text/javascript" charset="utf-8" src="js-project/image-handler.js"></script>
     <script type="text/javascript" charset="utf-8" src="js-project/song-handler.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js-project/bdd-handler.js"></script>
     <script type="text/javascript" charset="utf-8" src="index.js"></script>
   
 	<!-- CDN Respositories: For production, replace lines above with these uncommented minified versions -->
@@ -22,89 +23,42 @@
 	<!-- <script src="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js"></script>-->
 	
 	<script type="text/javascript">
-	
-	    var imageManager = new imageHandler();
-        var soundManager = new soundHandler();
-        var tab, tabReponse;
-        
-        function init(){
-            tab        = new Array();
-            tabReponse = new Array();
-            
-            $(".desord").each(function(){
-                letter    = imageManager.generateRandomLetter();
-                ressource = imageManager.getHtmlRessource(letter, true);
-                
-                tab.push(letter);
-                $(this).html(ressource);
-            });
-            $(".ord").each(function(){
-                $(this).html("&nbsp;");
-            });
-            
-            tab.sort();
-        }
-        
-        function validate(el){
-            html   = $(el).html();
-            letter = $(el).find("span:first").html();
-            
-            position = tabReponse.length;
-
-            if(letter == tab[position]){
-                $(".ord").eq(position).html(html);
-                tabReponse.push(letter);
-                if((position + 1) == tab.length){
-                    soundManager.playWin();
-                    myTimer = setTimeout(function(){
-                        alert("Bravo !");
-                        init();
-                    }, 
-                    500);
-                }
-            }else{
-                soundManager.playFail();
-            }
-        }
-
         jQuery(document).ready(function(){
-            init();
-            $(".desord").click(function(){
-                validate($(this));
-            });
+            var pageManager = new pageJeuOrdre();
+            pageManager.initialize();
         });
 	</script>
 	
 	</head>
   
   <body>
-	<div data-role="page" id="page-ordre" class="type-interior" data-theme="a">
+	<div data-role="page" id="page-ordre" class="type-interior" data-theme="a" style="background-image:url(media/images/background1.jpg);background-size:100% 100%;">
 		<div data-role="header" data-theme="a">
 			<h1>Abcd</h1>
 	 		<a href="index.html" rel="external" data-icon="home" data-iconpos="notext" id="intro" class="ui-btn-right">Accueil</a>
 		</div>
-		<div data-role="content" data-theme="a">
-            <div class="desord left">
+		<div data-role="content" data-theme="a"  style="background:none;">
+            <div class="desord left case">
                 
             </div>
-            <div class="desord right">
+            <div class="desord right case">
                 
             </div>
-            <div class="desord left">
+            <div class="desord left case">
                 
             </div>
-            <div class="desord right">
+            <div class="desord right case">
                 
             </div>
             
             <div class="reponse">
-                <div class="ord">
+                <div class="ord case">
                 </div>
-                <div class="ord">
+                <div class="ord case">
                 </div>
-                <div class="ord">
+                <div class="ord case">
                 </div>
-                <div class="ord">
+                <div class="ord case">
                 </div>
             </div>		
 		</div>

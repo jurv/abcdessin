@@ -40,7 +40,7 @@ function validate(){
 	var managerSong = new soundHandler();
 	this.managerSong = managerSong;
 
-    if(pixelsFin.rouge <= pixelsDeb.rouge * 0.35 && pixelsFin.blanc >= pixelsDeb.blanc * 0.95) {
+    if(pixelsFin.rouge <= pixelsDeb.rouge * 0.4 && pixelsFin.blanc >= pixelsDeb.blanc * 0.95) {
     	managerSong.playWin();
     	alert("Bravo !");
     } else {

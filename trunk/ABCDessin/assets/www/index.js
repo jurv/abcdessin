@@ -72,6 +72,188 @@ $(document).ready(function() {
     soundManager.playSound('a');*/
 });
 
+
+pageJeuOrdre = function () {
+    
+    var imageManager = new imageHandler();
+    var soundManager = new soundHandler();
+    var myScoreManager = new scoreManager();
+    var tab, tabReponse;
+    
+    var initialize = function(){
+        $(".desord").click(function(){
+            validate($(this));
+        });
+        init();
+    }
+    this.initialize = initialize;
+    
+    var init = function (){
+        tab        = new Array();
+        tabReponse = new Array();
+        
+        $(".desord").each(function(){
+            letter    = imageManager.generateRandomLetter();
+            ressource = imageManager.getHtmlRessource(letter, true);
+            
+            tab.push(letter);
+            $(this).html(ressource);
+            $(this).css("background","#FFFFFF");
+        });
+        $(".ord").each(function(){
+            $(this).html("&nbsp;");
+        });
+        tab.sort();
+    }
+    this.init = init;
+    
+    var validate =  function (el){
+        html   = $(el).html();
+        letter = $(el).find("span:first").html();
+        
+        position = tabReponse.length;
+
+        if(letter == tab[position]){
+            $(".ord").eq(position).html(html);
+            
+            $(el).css("background","#99E26E");
+            tabReponse.push(letter);
+            if((position + 1) == tab.length){
+                soundManager.playWin();
+                myScoreManager.pushGoodScore('ordre', 1);
+                myTimer = setTimeout(function(){
+                    alert("Bravo !");
+                    init();
+                }, 
+                500);
+            }
+        }else{
+            soundManager.playFail();
+            myScoreManager.pushBadScore('ordre', 1);
+        }
+    }
+    this.validate = validate;
+}
+
+
+pageJeuMaj2Min = function () {
+    var imageManager = new imageHandler();
+    var soundManager = new soundHandler();
+    var myScoreManager = new scoreManager();
+    
+    var tabLetters, atrouve;
+    
+    var initialize = function () {
+        $(".suggess").click(function(){
+            validate($(this));
+        });
+        init();
+    }
+    this.initialize = initialize;
+    
+    var init = function () {
+        tabLetters = new Array();
+        
+        $("#reponse").html("&nbsp;");
+        $("#reponse").css("background","#FFFFFF");
+        
+        $(".suggess").each(function(){
+            letter = imageManager.generateRandomLetter();
+            tabLetters.push(letter);
+            
+            ressource = imageManager.getHtmlRessource(letter, false);
+            $(this).html(ressource);
+        });
+        
+        atrouve   = tabLetters[Math.floor(Math.random()*tabLetters.length)];
+        ressource = imageManager.getHtmlRessource(atrouve.toUpperCase(), false);
+        
+        $("#atrouve").html(ressource);
+    }
+    this.init = init;
+    
+    var validate = function (el) {
+        html   = $(el).html();
+        letter = $(el).find("span:first").html().toLowerCase();
+        
+        if(letter == atrouve){
+            $("#reponse").html(html);
+            soundManager.playWin();
+            $("#reponse").css("background","#99E26E");
+            myScoreManager.pushGoodScore('min-2-maj', 1);
+            myTimer = setTimeout(function(){
+                                    alert("Bravo !");
+                                    init();
+                                }, 
+                                500);
+        }else{
+            soundManager.playFail();
+            myScoreManager.pushBadScore('min-2-maj', 1);
+        }
+    }
+    this.validate = validate;
+}
+
+
+pageJeuCur2Maj = function () {
+    
+    var imageManager = new imageHandler();
+    var soundManager = new soundHandler();
+    var myScoreManager = new scoreManager();
+    var tabLetters, atrouve;
+    
+    var initialize = function() {
+        $(".suggess").click(function(){
+            validate($(this));
+        });
+        init();
+    }
+    this.initialize = initialize;
+    
+    var init = function (){
+        tabLetters = new Array();
+        
+        $("#reponse").html("&nbsp;");
+        $("#reponse").css("background","#FFFFFF");
+        
+        $(".suggess").each(function(){
+            letter = imageManager.generateRandomLetter();
+            tabLetters.push(letter);
+            
+            ressource = imageManager.getHtmlRessource(letter.toUpperCase(), true);
+            $(this).html(ressource);
+        });
+        
+        atrouve   = tabLetters[Math.floor(Math.random()*tabLetters.length)];
+        ressource = imageManager.getHtmlRessource(atrouve, true);
+        
+        $("#atrouve").html(ressource);
+    }
+    this.init = init();
+    
+    var validate = function (el) {
+        html   = $(el).html();
+        letter = $(el).find("span:first").html().toLowerCase();
+        
+        if(letter == atrouve){
+            $("#reponse").html(html);
+            soundManager.playWin();
+            $("#reponse").css("background","#99E26E");
+            myScoreManager.pushGoodScore('cur-2-maj', 1);
+            myTimer = setTimeout(function(){
+                                    alert("Bravo !");
+                                    init();
+                                }, 
+                                500);
+        }else{
+            soundManager.playFail();
+            myScoreManager.pushBadScore('cur-2-maj', 1);
+        }
+    }
+    this.validate = validate;
+}
+
+
 /*
  * Classe permettant la gestion de la page "Apprentissage".
  */
@@ -499,7 +681,7 @@ var scoreManager = function(){
 	/*
 	 * Fonction permettant de recuperer le score par la date et le nom du jeu
 	 * @param gameName : nom du jeu dont on veut le score
-	 * @param date : date à laquelle on veut le score
+	 * @param date : date ï¿½ laquelle on veut le score
 	 */
 	var getScoreByDate = function(gameName,date){
 		scoreArrayTotal = getScores(gameName);
@@ -526,7 +708,7 @@ var scoreManager = function(){
 		while (bddManager.getValue(gameName +"-"+ i)){
 			i++;
 		}
-		var row = {"goodScore" : goodScore, "badScore" : badScore, "date" : date.toLocaleFormat("%x").toString() };
+		var row = {"goodScore" : goodScore, "badScore" : badScore, "date" : date};
 		bddManager.setValue(JSON.stringify(row),gameName +"-"+ i);
 		console.log('index.js : scoreManager : Insertion de ' + JSON.stringify(row));
 	};
@@ -539,6 +721,7 @@ var scoreManager = function(){
 		day = today.getDate();
 		month = (today.getMonth())+1;
 		year = today.getFullYear();
+		
 		strDate= day + "/" + month + "/" + year;
 		var scoreDuJour = getScoreByDate(gameName,strDate);
 		scoreDuJour.badScore = scoreDuJour.badScore + badScore;
@@ -556,7 +739,7 @@ var scoreManager = function(){
 		scoreDuJour.goodScore = scoreDuJour.goodScore + goodScore;
 		addScore(gameName,scoreDuJour.goodScore,scoreDuJour.badScore, strDate);
 	};
-	this.pushBadScore = pushBadScore;
+	this.pushGoodScore = pushGoodScore;
 
 	/*
 	 * Test
@@ -564,8 +747,8 @@ var scoreManager = function(){
 	testScore = function () {
 		var bonneReponse="12";
 		var mauvaisesReponse="6";
-		var date = new Date("01/01/2012");
-		addScore("dessin",bonneReponse,mauvaisesReponse, date);
+		//var date = new Date("01/01/2012");
+		addScore("dessin",bonneReponse,mauvaisesReponse, "01/01/2012");
 		var scoreArray = getScores("dessin");
 		alert(scoreArray[0].goodScore);
 	};
