@@ -4,7 +4,7 @@
     <meta http-equiv="Content-type" name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width">
     <title>ABCDessin</title>
 
- 	<link rel="stylesheet" href="css/style.css" />
+	<link rel="stylesheet" href="css/style.css" />
  	<link rel="stylesheet" href="jquery.mobile/jquery.mobile-1.1.0.min.css" />
 
     <script src="jquery.mobile/jquery-1.7.2.min.js"></script>
@@ -14,10 +14,11 @@
 	<script type="text/javascript" charset="utf-8" src="js-project/song-handler.js"></script>
 	<script type="text/javascript" charset="utf-8" src="index.js"></script>
 	<script type="text/javascript">
-		scoreMngr=null;
+		pageManager = null;
 		$(document).ready(function() {
-			scoreMngr = new scoreManager();
-			scoreMngr.testScore();
+	    	// Initialiseur du manager de la page
+			pageManager = new pageMenuJeux();
+			pageManager.initialize();
 		});
 	</script>
   
@@ -28,16 +29,46 @@
 	</head>
   
   <body>
-	<div data-role="page" id="page-resultats" class="type-interior" data-theme="b">
+	<div data-role="page" id="page-menu-jeux" class="type-interior" data-theme="b">
 		<div data-role="header" data-theme="b">
-			<h1>R&eacute;sultats</h1>
-	 		<a href="index.html" rel="external"  data-icon="home" data-iconpos="notext" id="intro" class="ui-btn-right">Accueil</a>
+			<h1>Consultation r&eacute;sultats</h1>
+	 		<a href="index.html" rel="external" data-icon="home" data-iconpos="notext" id="intro" class="ui-btn-right">Accueil</a>
 		</div>
-		<div data-role="content" data-theme="c">
-			<div id="ecouterScore"></div>
-			<div id="cur2MajScore"></div>
-			<div id="maj2MinScore"></div>
-			<div id="dessinerScore"></div>
+		<div id="content" data-role="content" data-theme="c">		
+			<div class="page">
+				    <div class="ligne">        
+				    	<a href="ecouterResultats.html"> 
+				        	<div class="tile tileLargo vert">
+				        		Ecouter <br />
+				        		<img src="css/images/ecoute.png" />
+				        	</div>
+				        </a>
+				    </div>
+				    <div class="ligne">    
+				    	<a href="maj-2-minResultats.html">              
+				        	<div class="tile bleu">	
+				        		<div id="content-maj2min"></div>
+				        	</div>
+				        </a>
+				        <a href="cur-2-majResultats.html"> 
+				        	<div class="tile rouge">
+				        		<div id="content-min2maj"></div>
+				        	</div>  
+				        </a>        
+				    </div>      
+				    <div class="ligne">   
+				    	<a href="ordreResultats.html">              
+				        	<div class="tile tileLargo jaune">
+				        		<div id="content-ordre"></div>
+				        	</div>
+				        </a> 
+				        <a href="dessinResultats.html">              
+				        	<div class="tile tileLargo bleu">
+				        		Dessin
+				        	</div>
+				        </a> 
+				    </div>
+				</div>	
 		</div>
 	</div>			
   </body>
