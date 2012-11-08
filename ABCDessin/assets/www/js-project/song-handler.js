@@ -64,13 +64,20 @@ soundHandler = function () {
 	}
 	this.isInMobile = isInMobile;
 	
-	function getPhoneGapPath() {
+	var getPhoneGapPath = function (){
 
 	    var path = window.location.pathname;
-	    path = path.substr( path, path.length - 18 );
-	    return path;
+	    //var path = "/android_asset/www/test.html";
+	    //path = path.substr( path, path.length - 18 );
+	    path1 = path.substr( 1, path.length - 1 );
+	    path2 = path1.split("/");
+	    path3 = path2.splice(0, path2.length-1);
+	    path4 = path3.join("/");
+        path5 = "/" + path4 + "/";
+        return path5;
 
 	};
+	this.getPhoneGapPath = getPhoneGapPath;
 	
 	/*
 	 * Fonction permettant de lancer la lecture d'une source audio en utilisant l'API cordova.
@@ -78,12 +85,6 @@ soundHandler = function () {
 	 * @param : src : chemin vers le fichier audio.
 	 */
 	this.playCordovaAudio = function (src) {
-		
-//	    if (this.media && typeof this.media.stop != 'undefined')
-//	    {
-//	        this.media.stop();
-//	        this.media.release();
-//	    }
 		// Créer l'objet Media à partir de src
 	    //alert(getPhoneGapPath() + src);
         this.media = new Media(getPhoneGapPath() + src, function() {}, function() { console.log('sound-handler: playCordovaAudio : Erreur ouverture du média : ')});

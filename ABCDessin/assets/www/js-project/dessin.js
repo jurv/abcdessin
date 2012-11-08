@@ -42,14 +42,14 @@ function validate(){
 
     if(pixelsFin.rouge <= pixelsDeb.rouge * 0.35 && pixelsFin.blanc >= pixelsDeb.blanc * 0.95) {
     	managerSong.playWin();
-    	alert("OK");
+    	alert("Bravo !");
     } else {
-        alert("KO");
         managerSong.playFail();
     }
 }
 
 function generate(){
+    var soundManager = new soundHandler();
     canvas.getContext('2d').clearRect(0,0,canvas.width, canvas.height);
     jQuery('#simple_sketch').sketch('actions',[]);
     context.fillStyle = "#FF0000";
@@ -59,7 +59,6 @@ function generate(){
     letter = imageManager.generateRandomLetter();
     ressource = imageManager.getHtmlRessource(letter, true);
     
-    char = getRandomChar();
-    
+    soundManager.playSound(letter);
     context.fillText(letter, canvas.width/3, canvas.height/1.5);
 }

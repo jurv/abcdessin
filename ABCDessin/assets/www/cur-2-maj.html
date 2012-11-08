@@ -13,11 +13,13 @@
     <script src="jquery.mobile/jquery.mobile-1.1.0.min.js"></script>
     <script type="text/javascript" charset="utf-8" src="cordova-1.9.0.js"></script>
     <script type="text/javascript" charset="utf-8" src="js-project/image-handler.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js-project/song-handler.js"></script>
     <script type="text/javascript" charset="utf-8" src="index.js"></script>
   
     <script type="text/javascript">
         
         var imageManager = new imageHandler();
+        var soundManager = new soundHandler();
         var tabLetters, atrouve;
         
         function init(){
@@ -45,11 +47,14 @@
             
             if(letter == atrouve){
                 $("#reponse").html(html);
+                soundManager.playWin();
                 myTimer = setTimeout(function(){
                                         alert("Bravo !");
                                         init();
                                     }, 
                                     500);
+            }else{
+                soundManager.playFail();
             }
         }
     
@@ -80,7 +85,8 @@
     		  <div id="fleche" style="float:left;margin:1%;text-align:center;">
     		      =>
     		  </div>
-    		  <div id="reponse" style="text-align:center;font-size:8em;width:48%; float:left;min-height:200px;margin: 0 auto;border:1px solid #000000">
+    		  <div id="reponse" style="text-align:center;font-size:8em;width:48%; float:left;margin: 0 auto;border:1px solid #000000">
+    		      &nbsp;
     		  </div>
 		  </div>
 		  
