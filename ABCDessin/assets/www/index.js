@@ -372,4 +372,44 @@ pageMenuJeux = function () {
 				                 );
 	};
 	this.initializeMenuCaption = initializeMenuCaption;
-}
+};
+
+/*
+ * Fonction permettant de récupérer un score
+ * @param gameName nom du jeu dont on veut recup les scores
+ * @return scoreArray Tableau de tableaux (scores bon, mauvais et leur date)
+ */
+getScores = function getScores(gameName) {
+	var i=0;
+	//Chaque score d'une session d'un jeu
+	var scoresLine;
+	//Score d'une session serialisé
+	var storedScores;
+	// Tableau de tableaux (scores bon, mauvais et leur date) à retourner
+	var scoreArray = new Array();;
+	//if (gameName != "dessiner" || gameName != "ordre" || gameName != "cu2maj" || gameName != "maj2min")
+	while (bddHandler.getValue(gameName + "-"+ i)){
+		storedScores = bddHandler.getValue(gameName + "-"+ i);
+		scoresLine=JSON.parse(storedScores);
+		scoreArray[i] = scoresLine;
+		i++;
+	}
+	return scoreArray;
+}; 
+
+/*
+ * Fonction permettant d'ajouter un score au jeu "dessiner"
+ * @param gameName nom du jeu dont on veut ajouter le score
+ * @param goodScore nombre de bonne réponse
+ * @param badScore nombre de mauvaise réponse
+ * @param date date de la session
+ */
+addScore = function (gameName, goodScore,badScore,date) {
+	//Recupérer l'index de la derniere valeur presente en bdd pour un jeu donné
+	var i = 0;
+	while (bddHandler.getValue(gameName +"-"+ i)){
+		i++;
+	}
+	var row = {"goodScore" : goodScore, "badScore" : badScore, "date" : date };
+	bddHandler.setValue(JSON.stringify(row),gameName +"-"+ i);
+};
