@@ -708,6 +708,14 @@ var scoreManager = function(){
 		while (bddManager.getValue(gameName +"-"+ i)){
 			i++;
 		}
+		
+		if(goodScore == null){
+		    goodScore = 0;
+		}
+		if(badScore == null){
+            badScore = 0;
+        }
+		
 		var row = {"goodScore" : goodScore, "badScore" : badScore, "date" : date};
 		bddManager.setValue(JSON.stringify(row),gameName +"-"+ i);
 		console.log('index.js : scoreManager : Insertion de ' + JSON.stringify(row));
@@ -745,7 +753,6 @@ var scoreManager = function(){
             goodScoreDuJour = 0;
         }
         scoreDuJour.goodScore = goodScoreDuJour + goodScore;
-		scoreDuJour.goodScore = scoreDuJour.goodScore + goodScore;
 		addScore(gameName,scoreDuJour.goodScore,scoreDuJour.badScore, strDate);
 	};
 	this.pushGoodScore = pushGoodScore;
