@@ -30,9 +30,6 @@
 	    	// Initialiseur du manager de la page
 			pageManager = new pageApprentissage();
 			pageManager.initialize();
-			
-			var h = $("#cur_letter_display").height();
-        	$("#min_letter_display").height(h+"px");
 		});
 	</script>
   
@@ -58,8 +55,8 @@
 				<div id="diapo-display">
 					<div id="maj_letter_display" class="bigDisplay" onclick="pageManager.readLetter();"></div>
 					<div class="lineBloc">
-						<div id="min_letter_display" class="mediumDisplay" onclick="pageManager.readLetter();"></div>
-						<div id="cur_letter_display" class="mediumDisplay" onclick="pageManager.readLetter();"></div>
+						<div style="height:200px" id="min_letter_display" class="mediumDisplay" onclick="pageManager.readLetter();"></div>
+						<div style="height:200px" id="cur_letter_display" class="mediumDisplay" onclick="pageManager.readLetter();"></div>
 					</div>
 				</div>
 			</div>
