@@ -470,7 +470,6 @@ pageJeuxEcoute = function () {
             $(this).html(managerLetter.getHtmlRessource(letter.toLowerCase(), true));
             i++;
         });
-        
         //on sélectionne la lettre valide au hasard
         var position = Math.floor(Math.random() * tabLetters.length);
         this.validLetter = tabLetters[position];
@@ -488,7 +487,7 @@ pageJeuxEcoute = function () {
             $("#validletter").html(printCapitalLetter(this.validLetter,true));
             $("#validletter").css("background","#99E26E")
             managerSong.playWin();
-            setInterval(toNextLetter, 3000);
+            setTimeout(toNextLetter, 2000);
         }else{
             managerSong.playFail();
         }
