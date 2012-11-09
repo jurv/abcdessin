@@ -473,7 +473,7 @@ pageJeuxEcoute = function () {
         var position = Math.floor(Math.random() * tabLetters.length);
         validLetter = tabLetters[position];
         // On lance la lecture de la lettre
-        managerSong.playSound(this.validLetter);
+        managerSong.playSound(validLetter);
     }
     this.toNextLetter = toNextLetter;
     
@@ -494,7 +494,7 @@ pageJeuxEcoute = function () {
     
     var readLetter = function() {
         // On lance la lecture de la lettre
-        managerSong.playSound(this.validLetter);
+        managerSong.playSound(validLetter);
     } 
     this.readLetter = readLetter;
     
