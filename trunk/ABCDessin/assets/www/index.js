@@ -180,7 +180,7 @@ pageJeuMaj2Min = function () {
             $("#reponse").html(html);
             soundManager.playWin();
             $("#reponse").css("background","#99E26E");
-            myScoreManager.pushGoodScore('min-2-maj', 1);
+            myScoreManager.pushGoodScore('maj-2-min', 1);
             myTimer = setTimeout(function(){
                                     alert("Bravo !");
                                     init();
@@ -724,7 +724,11 @@ var scoreManager = function(){
 		
 		strDate= day + "/" + month + "/" + year;
 		var scoreDuJour = getScoreByDate(gameName,strDate);
-		scoreDuJour.badScore = scoreDuJour.badScore + badScore;
+		var badScoreDuJour = scoreDuJour.badScore;
+		if(badScoreDuJour == null){
+		    badScoreDuJour = 0;
+		}
+		scoreDuJour.badScore = badScoreDuJour + badScore;
 		addScore(gameName,scoreDuJour.goodScore,scoreDuJour.badScore, strDate);
 	};
 	this.pushBadScore = pushBadScore;
@@ -736,6 +740,11 @@ var scoreManager = function(){
 		year = today.getFullYear();
 		strDate= day + "/" + month + "/" + year;
 		var scoreDuJour = getScoreByDate(gameName,strDate);
+		var goodScoreDuJour = scoreDuJour.goodScore;
+        if(goodScoreDuJour == null){
+            goodScoreDuJour = 0;
+        }
+        scoreDuJour.goodScore = goodScoreDuJour + goodScore;
 		scoreDuJour.goodScore = scoreDuJour.goodScore + goodScore;
 		addScore(gameName,scoreDuJour.goodScore,scoreDuJour.badScore, strDate);
 	};
