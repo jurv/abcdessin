@@ -361,10 +361,6 @@ pageApprentissage = function () {
         
         // On lit la lettre
         readLetter();
-        /*
-        var h = $("#cur_letter_display").height();
-        $("#min_letter_display").height(h+"px");
-        */
     }
     this.toNextLetter = toNextLetter;
     
@@ -426,6 +422,9 @@ pageJeuxEcoute = function () {
     var autoPlayInt = 0;
     this.autoPlayInt = autoPlayInt;
     
+    var validLetter = "";
+    this.validLetter = validLetter;
+    
     // Manager des lettres
     var managerLetter = new imageHandler();
     this.managerLetter = managerLetter;
@@ -472,8 +471,7 @@ pageJeuxEcoute = function () {
         });
         //on sélectionne la lettre valide au hasard
         var position = Math.floor(Math.random() * tabLetters.length);
-        this.validLetter = tabLetters[position];
-        
+        validLetter = tabLetters[position];
         // On lance la lecture de la lettre
         managerSong.playSound(this.validLetter);
     }
@@ -483,11 +481,11 @@ pageJeuxEcoute = function () {
         html   = $(el).html();
         letter = $(el).find("span:first").html();
         place  = false;
-        if(letter == this.validLetter){
-            $("#validletter").html(printCapitalLetter(this.validLetter,true));
+        if(letter == validLetter){
+            $("#validletter").html(printCapitalLetter(validLetter,true));
             $("#validletter").css("background","#99E26E")
             managerSong.playWin();
-            setTimeout(toNextLetter, 2000);
+            setTimeout(toNextLetter,2000);
         }else{
             managerSong.playFail();
         }
